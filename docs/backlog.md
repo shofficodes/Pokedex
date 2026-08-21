@@ -1,0 +1,2 @@
+- dark light mode implementieren
+- herausfinden, wie ich immer volle Zeilen anzeigen kann! Anhand der Bildbreite eine anzahl an render objects bestimmen im js. 
