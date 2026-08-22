@@ -3,7 +3,7 @@ header {
     justify-content: space-between;
     align-items: center;
 
-    height: 96px; 
+    height: 96px;
     min-height: 96px;
 
     gap: 0px 12px;
@@ -11,8 +11,9 @@ header {
 
     border: 3px solid black;
 }
+
 .headerInfo {
-    display: flex; 
+    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -22,7 +23,8 @@ header {
     color: #655F56;
     font-size: 16px;
 }
-.favButton{
+
+.favButton {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,17 +36,20 @@ header {
     background-color: transparent;
     border: 2px solid gray;
 }
-.favButton > img{
+
+.favButton>img {
     width: 9px;
     height: 9px;
 
     transform: rotate(45deg);
 }
-.favButton > span{
+
+.favButton>span {
     font-size: 16px;
     color: #655F56;
 }
-.darkButton{
+
+.darkButton {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -59,26 +64,30 @@ header {
     color: #655F56;
     font-weight: bold;
 }
-.searchButton{
+
+.searchButton {
     width: 96px;
 }
-.inputContainer{
+
+.inputContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    
+
     gap: 2px;
     width: 100%;
     color: #655F56;
     font-weight: 300;
 }
-.searchContainer{
+
+.searchContainer {
     width: 100%;
     display: flex;
     gap: 16px;
 }
-.searchContainer > input{
+
+.searchContainer>input {
     width: 100%;
     height: 40px;
 
@@ -86,7 +95,8 @@ header {
 
     font-size: 16px;
 }
-.searchButton{
+
+.searchButton {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -98,11 +108,13 @@ header {
     background-color: transparent;
     border: 3px solid black;
 }
-header > img{
-    width: 40px; 
+
+header>img {
+    width: 40px;
     height: 40px;
 }
-header > div > h1{
+
+header>div>h1 {
     font-family: "ArchivoBlack";
     font-size: 24px;
     font-weight: 400;
