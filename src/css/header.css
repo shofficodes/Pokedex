@@ -1,0 +1,109 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 96px; 
+    min-height: 96px;
+
+    gap: 0px 12px;
+    padding: 0pc 32px;
+
+    border: 3px solid black;
+}
+.headerInfo {
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 160px;
+
+    font-family: Archivo;
+    color: #655F56;
+    font-size: 16px;
+}
+.favButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 64px;
+    height: 32px;
+    gap: 6px;
+
+    background-color: transparent;
+    border: 2px solid gray;
+}
+.favButton > img{
+    width: 9px;
+    height: 9px;
+
+    transform: rotate(45deg);
+}
+.favButton > span{
+    font-size: 16px;
+    color: #655F56;
+}
+.darkButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 80px;
+    height: 32px;
+
+    background-color: transparent;
+    border: 2px solid gray;
+
+    font-size: 16px;
+    color: #655F56;
+    font-weight: bold;
+}
+.searchButton{
+    width: 96px;
+}
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    
+    gap: 2px;
+    width: 100%;
+    color: #655F56;
+    font-weight: 300;
+}
+.searchContainer{
+    width: 100%;
+    display: flex;
+    gap: 16px;
+}
+.searchContainer > input{
+    width: 100%;
+    height: 40px;
+
+    border: 3px solid black;
+
+    font-size: 16px;
+}
+.searchButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 96px;
+    height: 40px;
+    gap: 6px;
+
+    background-color: transparent;
+    border: 3px solid black;
+}
+header > img{
+    width: 40px; 
+    height: 40px;
+}
+header > div > h1{
+    font-family: "ArchivoBlack";
+    font-size: 24px;
+    font-weight: 400;
+}

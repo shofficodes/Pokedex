@@ -6,10 +6,41 @@
     <title>Pokedex</title>
     <link rel="shortcut icon" href="./assets/icons/favicon.png" type="image/x-icon">
 
+    <link rel="stylesheet" href="./src/css/standart.css">
+    <link rel="stylesheet" href="./src/css/fonts.css">
+    <link rel="stylesheet" href="./src/css/header.css">
+
     <script src="./src/js/pokeapi.js"></script>
     <script src="./src/js/script.js"></script>
 </head>
 <body onload="init()">
-    
+    <header>
+        <img src="./assets/icons/logo-dex.png" alt="Pokedex_Icon" class="logo">
+        <div>
+            <h1>POKÉDEX</h1>
+            <div class="headerInfo">
+                <p>GEN I</p>
+                <p>·</p>
+                <p>151 ENTRIES</p>
+            </div>
+        </div>
+        <button class="favButton"><img src="./assets/icons/saved_icon.png" alt="favorite_icon"><span>0</span></button>
+        <button class="darkButton">LIGHT</button>
+        <div class="inputContainer">
+            <div class="searchContainer">
+                <input type="Search" placeholder="Search by name...">
+                <button class="searchButton">SEARCH</button>
+            </div>
+            <p>TYPE AT LEAST 3 CHARACTERS</p>
+        </div>
+    </header>
+
+    <body>
+        
+    </body>
+
+    <footer>
+
+    </footer>
 </body>
 </html>
