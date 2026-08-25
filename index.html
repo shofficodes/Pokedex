@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="./src/css/standart.css">
     <link rel="stylesheet" href="./src/css/fonts.css">
     <link rel="stylesheet" href="./src/css/header.css">
+    <link rel="stylesheet" href="./src/css/main.css">
+    <link rel="stylesheet" href="./src/css/pokemonCard.css">
 
     <script src="./src/js/pokeapi.js"></script>
     <script src="./src/js/script.js"></script>
@@ -38,7 +40,40 @@
     </header>
 
     <body>
+        <main>
+            <div class="mainInfo">
+                <p>ALL POKÉMON</p>
+                <div class="loadedAmountWrapper">
+                    <p>24</p><span>LOADED</span>
+                </div>
+            </div>
 
+            <section class="pokemons">
+                <div class="pokemonCardWrapper">
+                    <section class="pokemonCard" data-id="card">
+                        <header class="pokemonCardHeader">
+                            <p>Num###</p>
+                            <button class="cardFavButton" data-id="favButton" aria-label="Zu Favoriten hinzufügen">
+                                <img src="./assets/icons/fav-off.png" alt="favorite_disabled_icon">
+                            </button>
+                        </header>
+
+                        <div class="cardContent">
+                            <h2>NAME</h2>
+                            <div class="typeWrapper">
+                                <span>Fire</span>
+                                <span>Grass</span>
+                            </div>
+                            <div class="cardImgWrapper">
+                                <img id="pokemonCardImg1" data-id="cardImage" src="./assets/test.png" alt="">
+                            </div>
+                        </div>
+                        <p>#1</p>
+                    </section>
+                    <div class="pokemonCardShadow"></div>
+                </div>
+            </section>
+        </main>
     </body>
 
     <footer>

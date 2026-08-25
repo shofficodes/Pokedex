@@ -1,0 +1,144 @@
+.pokemons{
+    padding: 32px; 
+    gap: 8px;
+}
+
+.pokemonCardWrapper {
+    position: relative;
+    width: 212px;
+    height: 212px;
+}
+
+.pokemonCardShadow {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 100%;
+    height: 100%;
+    background-color: #1a1a1a;
+    z-index: -1;
+}
+
+.pokemonCard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    border: 3px solid black;
+    color: white;
+    background-color: #4CAF3F; /* wird noch durch variable ersetzt, sobald ein color sheet existiert! (bg_colors.css oder so) alle weiteren Farben ebenso!*/
+    position: relative;
+
+    transition: transform 0.2s ease;
+}
+
+.pokemonCard:hover {
+    transform: translate(-2px, -2px);
+}
+
+.cardFavButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 12px;
+    height: 12px;
+    border: none;
+    background-color: transparent;
+}
+
+.cardFavButton>img {
+    width: 12px;
+    height: 12px;
+}
+
+.pokemonCardHeader {
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10px;
+    min-height: 10px;
+    max-height: 10px;
+
+    margin: 16px;
+    padding: 0;
+}
+
+.pokemonCardHeader > p{
+    font-size: 12px;
+}
+
+.cardContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 16px;
+    padding-top: 0px;
+
+    gap: 8px;
+}
+
+.cardContent>h2 {
+    font-size: 24px;
+    font-family: ArchivoBlack;
+}
+
+.cardImgWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.cardImgWrapper>img {
+    width: 88px;
+    height: 88px;
+
+    border: 1.5px dashed #4a934a;
+    background-image: repeating-linear-gradient(45deg,
+            rgba(74, 147, 74, 1),
+            rgba(74, 147, 74, 1) 4px,
+            transparent 4px,
+            transparent 8px);
+}
+
+.typeBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #4CAF3F;
+    width: 64px;
+    height: 24px;
+
+    border: 1px solid black;
+}
+
+.typeWrapper {
+    display: flex;
+    gap: 8px;
+}
+
+.typeWrapper>span {
+    background-color: #3D8C32;
+    border: 2px solid #32742A;
+    padding: 2px 8px;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.pokemonCard > p{ /* Ab 1000 zu groß, dann muss die Schriftgröße reduziert werden! Bzw. anderes Stiling erstellen und je nach Zahl zuweisen! */
+    position: absolute;
+    bottom: -20px;
+    right: -8px;
+    font-family: ArchivoBlack;
+    font-size: 72px;
+
+    color: rgba(0, 0, 0, 0.17);
+}

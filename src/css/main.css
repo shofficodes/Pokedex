@@ -1,0 +1,25 @@
+main {
+    border: 3px solid black;
+    border-top: none;
+}
+
+.mainInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 0px 32px;
+    margin-top: 32px;
+
+    color: #655F56;
+    font-size: 16px;
+}
+
+.loadedAmountWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
