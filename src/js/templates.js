@@ -1,7 +1,7 @@
 function pokemonCardTemplate(pokeIndex) {
     return `
         <div class="pokemonCardWrapper">
-                <section class="pokemonCard" data-id="card">
+                <section class="pokemonCard" data-id="card" data-type="${pokemonCache[pokeIndex].types[0]}">
                     <header class="pokemonCardHeader">
                         <p>#${formatPokemonId(pokemonCache[pokeIndex].id)}</p>
                         <button class="cardFavButton" data-id="favButton" aria-label="Add to favorite">
@@ -29,7 +29,7 @@ function getTypeHTML(pokeIndex) {
     let typesHtml = ""
 
     for (let i = 0; i < pokemonCache[pokeIndex].types.length; i++) {
-        typesHtml += `<span>${toUpperCaseString(pokemonCache[pokeIndex].types[i])}</span>\n`;
+        typesHtml += `<span data-type="${pokemonCache[pokeIndex].types[i]}">${toUpperCaseString(pokemonCache[pokeIndex].types[i])}</span>\n`;
     }
 
     if (typesHtml === "") {

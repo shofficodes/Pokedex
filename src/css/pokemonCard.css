@@ -55,9 +55,6 @@
     height: 100%;
 
     border: 3px solid black;
-    color: white;
-    background-color: #4CAF3F;
-    /* wird noch durch variable ersetzt, sobald ein color sheet existiert! (bg_colors.css oder so) alle weiteren Farben ebenso!*/
     position: relative;
 
     transition: transform 0.2s ease;

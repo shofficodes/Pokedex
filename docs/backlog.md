@@ -1,2 +1,5 @@
 - dark light mode implementieren
-- herausfinden, wie ich immer volle Zeilen anzeigen kann! Anhand der Bildbreite eine anzahl an render objects bestimmen im js. 
+    - themeColors einarbeiten ins html, klassen ggf. umbenennen. 
+    - Läd standart dunkel? Prüfen und anpassen, soll browser settings laden! 
+
+- fix image background colors

@@ -1,0 +1,135 @@
+:root {
+    --type-normal: #9A9A86;
+    --type-normal-font: #FFFFFF;
+    --chip-normal: #7B7B6B;
+    --chip-line-normal: #666658;
+
+    --type-fire: #F2622E;
+    --type-fire-font: #FFFFFF;
+    --chip-fire: #C24E25;
+    --chip-line-fire: #A0411E;
+
+    --type-water: #2F7DE0;
+    --type-water-font: #FFFFFF;
+    --chip-water: #2664B3;
+    --chip-line-water: #1F5394;
+
+    --type-electric: #F2C02E;
+    --type-electric-font: #101017;
+    --chip-electric: #C29A25;
+    --chip-line-electric: #A07F1E;
+
+    --type-grass: #4CAF3F;
+    --type-grass-font: #FFFFFF;
+    --chip-grass: #3D8C32;
+    --chip-line-grass: #32742A;
+
+    --type-ice: #5FC9D6;
+    --type-ice-font: #101017;
+    --chip-ice: #4CA1AB;
+    --chip-line-ice: #3F858D;
+
+    --type-fighting: #D13B3B;
+    --type-fighting-font: #FFFFFF;
+    --chip-fighting: #A72F2F;
+    --chip-line-fighting: #8A2727;
+
+    --type-poison: #9B46B8;
+    --type-poison-font: #FFFFFF;
+    --chip-poison: #7C3893;
+    --chip-line-poison: #662E79;
+
+    --type-ground: #D1A24A;
+    --type-ground-font: #FFFFFF;
+    --chip-ground: #A7823B;
+    --chip-line-ground: #8A6B31;
+
+    --type-flying: #7A9CE0;
+    --type-flying-font: #FFFFFF;
+    --chip-flying: #627DB3;
+    --chip-line-flying: #516794;
+
+    --type-psychic: #F2497E;
+    --type-psychic-font: #FFFFFF;
+    --chip-psychic: #C23A65;
+    --chip-line-psychic: #A03053;
+
+    --type-bug: #8FAE1F;
+    --type-bug-font: #FFFFFF;
+    --chip-bug: #728B19;
+    --chip-line-bug: #5E7314;
+
+    --type-rock: #B5952F;
+    --type-rock-font: #FFFFFF;
+    --chip-rock: #917726;
+    --chip-line-rock: #77621F;
+
+    --type-ghost: #6B5BB5;
+    --type-ghost-font: #FFFFFF;
+    --chip-ghost: #564991;
+    --chip-line-ghost: #473C77;
+
+    --type-dragon: #5B3FD6;
+    --type-dragon-font: #FFFFFF;
+    --chip-dragon: #4932AB;
+    --chip-line-dragon: #3C2A8D;
+
+    --type-dark: #4A4038;
+    --type-dark-font: #FFFFFF;
+    --chip-dark: #3B332D;
+    --chip-line-dark: #312A25;
+
+    --type-steel: #8F9AA8;
+    --type-steel-font: #FFFFFF;
+    --chip-steel: #727B86;
+    --chip-line-steel: #5E666F;
+
+    --type-fairy: #EF85B5;
+    --type-fairy-font: #FFFFFF;
+    --chip-fairy: #BF6A91;
+    --chip-line-fairy: #9E5877;
+}
+
+.pokemonCard[data-type="normal"]    { background-color: var(--type-normal);   color: var(--type-normal-font); }
+.pokemonCard[data-type="fire"]      { background-color: var(--type-fire);     color: var(--type-fire-font); }
+.pokemonCard[data-type="water"]     { background-color: var(--type-water);    color: var(--type-water-font); }
+.pokemonCard[data-type="electric"]  { background-color: var(--type-electric); color: var(--type-electric-font); }
+.pokemonCard[data-type="grass"]     { background-color: var(--type-grass);    color: var(--type-grass-font); }
+.pokemonCard[data-type="ice"]       { background-color: var(--type-ice);      color: var(--type-ice-font); }
+.pokemonCard[data-type="fighting"]  { background-color: var(--type-fighting); color: var(--type-fighting-font); }
+.pokemonCard[data-type="poison"]    { background-color: var(--type-poison);   color: var(--type-poison-font); }
+.pokemonCard[data-type="ground"]    { background-color: var(--type-ground);   color: var(--type-ground-font); }
+.pokemonCard[data-type="flying"]    { background-color: var(--type-flying);   color: var(--type-flying-font); }
+.pokemonCard[data-type="psychic"]   { background-color: var(--type-psychic);  color: var(--type-psychic-font); }
+.pokemonCard[data-type="bug"]       { background-color: var(--type-bug);      color: var(--type-bug-font); }
+.pokemonCard[data-type="rock"]      { background-color: var(--type-rock);     color: var(--type-rock-font); }
+.pokemonCard[data-type="ghost"]     { background-color: var(--type-ghost);    color: var(--type-ghost-font); }
+.pokemonCard[data-type="dragon"]    { background-color: var(--type-dragon);   color: var(--type-dragon-font); }
+.pokemonCard[data-type="dark"]      { background-color: var(--type-dark);     color: var(--type-dark-font); }
+.pokemonCard[data-type="steel"]     { background-color: var(--type-steel);    color: var(--type-steel-font); }
+.pokemonCard[data-type="fairy"]     { background-color: var(--type-fairy);    color: var(--type-fairy-font); }
+
+.typeWrapper > span {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(0, 0, 0, 0.34);
+    color: inherit;
+}
+
+.pokemonCard.framed .typeWrapper > span[data-type="normal"]    { background-color: var(--type-normal);   border-color: var(--chip-line-normal);   color: var(--type-normal-font); }
+.pokemonCard.framed .typeWrapper > span[data-type="fire"]      { background-color: var(--type-fire);     border-color: var(--chip-line-fire);     color: var(--type-fire-font); }
+.pokemonCard.framed .typeWrapper > span[data-type="water"]     { background-color: var(--type-water);    border-color: var(--chip-line-water);    color: var(--type-water-font); }
+.pokemonCard.framed .typeWrapper > span[data-type="electric"]  { background-color: var(--type-electric); border-color: var(--chip-line-electric); color: var(--type-electric-font); }
+.pokemonCard.framed .typeWrapper > span[data-type="grass"]     { background-color: var(--type-grass);    border-color: var(--chip-line-grass);    color: var(--type-grass-font); }
+.pokemonCard.framed .typeWrapper > span[data-type="ice"]       { background-color: var(--type-ice);      border-color: var(--chip-line-ice);      color: var(--type-ice-font); }
+.pokemonCard.framed .typeWrapper > span[data-type="fighting"]  { background-color: var(--type-fighting); border-color: var(--chip-line-fighting); color: var(--type-fighting-font); }
+.pokemonCard.framed .typeWrapper > span[data-type="poison"]    { background-color: var(--type-poison);   border-color: var(--chip-line-poison);   color: var(--type-poison-font); }
+.pokemonCard.framed .typeWrapper > span[data-type="ground"]    { background-color: var(--type-ground);   border-color: var(--chip-line-ground);   color: var(--type-ground-font); }
+.pokemonCard.framed .typeWrapper > span[data-type="flying"]    { background-color: var(--type-flying);   border-color: var(--chip-line-flying);   color: var(--type-flying-font); }
+.pokemonCard.framed .typeWrapper > span[data-type="psychic"]   { background-color: var(--type-psychic);  border-color: var(--chip-line-psychic);  color: var(--type-psychic-font); }
+.pokemonCard.framed .typeWrapper > span[data-type="bug"]       { background-color: var(--type-bug);      border-color: var(--chip-line-bug);      color: var(--type-bug-font); }
+.pokemonCard.framed .typeWrapper > span[data-type="rock"]      { background-color: var(--type-rock);     border-color: var(--chip-line-rock);     color: var(--type-rock-font); }
+.pokemonCard.framed .typeWrapper > span[data-type="ghost"]     { background-color: var(--type-ghost);    border-color: var(--chip-line-ghost);    color: var(--type-ghost-font); }
+.pokemonCard.framed .typeWrapper > span[data-type="dragon"]    { background-color: var(--type-dragon);   border-color: var(--chip-line-dragon);   color: var(--type-dragon-font); }
+.pokemonCard.framed .typeWrapper > span[data-type="dark"]      { background-color: var(--type-dark);     border-color: var(--chip-line-dark);     color: var(--type-dark-font); }
+.pokemonCard.framed .typeWrapper > span[data-type="steel"]     { background-color: var(--type-steel);    border-color: var(--chip-line-steel);    color: var(--type-steel-font); }
+.pokemonCard.framed .typeWrapper > span[data-type="fairy"]     { background-color: var(--type-fairy);    border-color: var(--chip-line-fairy);    color: var(--type-fairy-font); }
