@@ -1,22 +1,4 @@
 :root {
-    --bg: #0e0e12;
-    --grid: rgba(255, 255, 255, 0.05);
-    --app-bg: #101017;
-    --panel: #15151d;
-    --surface: #191921;
-    --surface-2: #0e0e14;
-    --input: #0c0c12;
-    --ink: #f7f5f0;
-    --ink-2: #8e8a82;
-    --border: #2c2c38;
-    --shadow: #000000;
-    --accent: #f5c518;
-    --accent-ink: #f5c518;
-    --edge: #101017;
-    --danger: #d13b3b;
-}
-
-[data-theme="light"] {
     --bg: #eae6db;
     --grid: rgba(0, 0, 0, 0.06);
     --app-bg: #f7f4ec;
@@ -30,6 +12,24 @@
     --shadow: #15151b;
     --accent: #f5c518;
     --accent-ink: #7d5900;
+    --edge: #101017;
+    --danger: #d13b3b;
+}
+
+[data-theme="dark"] {
+    --bg: #0e0e12;
+    --grid: rgba(255, 255, 255, 0.05);
+    --app-bg: #101017;
+    --panel: #15151d;
+    --surface: #191921;
+    --surface-2: #0e0e14;
+    --input: #0c0c12;
+    --ink: #f7f5f0;
+    --ink-2: #8e8a82;
+    --border: #2c2c38;
+    --shadow: #000000;
+    --accent: #f5c518;
+    --accent-ink: #f5c518;
     --edge: #101017;
     --danger: #d13b3b;
 }
