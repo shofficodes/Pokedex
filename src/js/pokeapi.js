@@ -82,8 +82,3 @@ function extractIdFromUrl(url) {
 
     return Number(lastPart);
 }
-
-async function getPokemonImg(id) {
-    let response = await fetch(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`);
-}
-

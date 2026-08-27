@@ -1,12 +1,40 @@
-.pokemons{
-    padding: 32px; 
+.pokemons {
+    display: grid;
+    grid-template-columns: auto;
+
+    padding: 32px;
     gap: 8px;
+}
+
+@media (min-width: 375px) {
+    .pokemons {
+        grid-template-columns: auto auto;
+    }
+}
+
+@media (min-width: 768px) {
+    .pokemons {
+        grid-template-columns: auto auto auto;
+    }
+}
+
+@media (min-width: 1024px) {
+    .pokemons {
+        grid-template-columns: auto auto auto auto;
+    }
+}
+
+@media (min-width: 1440px) {
+    .pokemons {
+        grid-template-columns: auto auto auto auto auto auto;
+    }
 }
 
 .pokemonCardWrapper {
     position: relative;
     width: 212px;
     height: 212px;
+    margin-bottom: 16px;
 }
 
 .pokemonCardShadow {
@@ -25,10 +53,11 @@
     left: 0;
     width: 100%;
     height: 100%;
-    
+
     border: 3px solid black;
     color: white;
-    background-color: #4CAF3F; /* wird noch durch variable ersetzt, sobald ein color sheet existiert! (bg_colors.css oder so) alle weiteren Farben ebenso!*/
+    background-color: #4CAF3F;
+    /* wird noch durch variable ersetzt, sobald ein color sheet existiert! (bg_colors.css oder so) alle weiteren Farben ebenso!*/
     position: relative;
 
     transition: transform 0.2s ease;
@@ -67,7 +96,7 @@
     padding: 0;
 }
 
-.pokemonCardHeader > p{
+.pokemonCardHeader>p {
     font-size: 12px;
 }
 
@@ -133,7 +162,8 @@
     letter-spacing: 1px;
 }
 
-.pokemonCard > p{ /* Ab 1000 zu groß, dann muss die Schriftgröße reduziert werden! Bzw. anderes Stiling erstellen und je nach Zahl zuweisen! */
+.pokemonCard>p {
+    /* Ab 1000 zu groß, dann muss die Schriftgröße reduziert werden! Bzw. anderes Stiling erstellen und je nach Zahl zuweisen! */
     position: absolute;
     bottom: -20px;
     right: -8px;

@@ -18,3 +18,10 @@ main {
     flex-direction: column;
     min-height: 100dvh;
 }
+
+@media screen and (min-width: 1440px) {
+    #pokemons, .mainInfo, .header {
+        padding-left: max(calc(50% - 720px), 0px);
+        padding-right: max(calc(50% - 720px), 0px);
+    }
+}
