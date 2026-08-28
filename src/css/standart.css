@@ -7,6 +7,7 @@ body {
     background-color: white;
     color: black;
     font-family: "Archivo";
+    min-height: 100dvh;
 }
 
 html {
@@ -16,7 +17,7 @@ html {
 main {
     display: flex;
     flex-direction: column;
-    min-height: 100dvh;
+    flex: 1;
 }
 
 @media screen and (min-width: 1440px) {

@@ -3,7 +3,7 @@ function pokemonCardTemplate(pokeIndex) {
         <div class="pokemonCardWrapper">
                 <section class="pokemonCard" data-id="card" data-type="${pokemonCache[pokeIndex].types[0]}">
                     <header class="pokemonCardHeader">
-                        <p>#${formatPokemonId(pokemonCache[pokeIndex].id)}</p>
+                        <p>${formatPokemonId(pokemonCache[pokeIndex].id)}</p>
                         <button class="cardFavButton" data-id="favButton" aria-label="Add to favorite">
                             <img src="./assets/icons/fav-off.png" alt="favorite_disabled_icon">
                         </button>

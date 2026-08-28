@@ -42,23 +42,32 @@
         </div>
     </header>
 
-    <body>
-        <main>
-            <div class="mainInfo">
-                <p>ALL POKÉMON</p>
-                <div class="loadedAmountWrapper">
-                    <p>24</p><span>LOADED</span>
-                </div>
+    <main>
+        <div class="mainInfo">
+            <p>ALL POKÉMON</p>
+            <div class="loadedAmountWrapper">
+                <p>24</p><span>LOADED</span>
             </div>
+        </div>
 
-            <section class="pokemons" id="pokemons">
-                
-            </section>
-        </main>
-    </body>
+        <section class="pokemons" id="pokemons">
 
-    <footer>
+        </section>
+        <div class="loadMoreWrapper">
+            <div class="loadMoreInner">
+                <div class="loadMoreShadow"></div>
+                <button onclick="loadMorePokemon()" class="loadMoreButton">LOAD MORE</button>
+            </div>
+        </div>
+        <p class="loadedAmountInfo" id="loadedAmountInfo"></p>
+    </main>
 
+    <footer class="pageFooter">
+        <div class="footerLine"></div>
+        <div class="footerContent">
+            <p>DATA · POKEAPI.COM</p>
+            <p>RETRAINING PROJECT 2026</p>
+        </div>
     </footer>
 </body>
 

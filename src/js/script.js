@@ -10,6 +10,8 @@ async function init() {
     console.log(pokemonCache);
 
     renderPokemons(renderAmount);
+    await getPokemonAmount();
+    renderLoadedAmount();
 }
 
 function renderPokemons(amount){
@@ -19,4 +21,16 @@ function renderPokemons(amount){
     for(let i = 0; i < amount; i++){
         pokemonElement.innerHTML += pokemonCardTemplate(i + 1);
     }
+}
+
+function renderLoadedAmount(){
+    let loadedAmountTag = document.getElementById("loadedAmountInfo");
+    loadedAmountTag.innerHTML = "";
+
+    loadedAmountTag.innerHTML = `${renderAmount} OF ${pokemonAmount} · NEXT BATCH 24`;    
+}
+
+function loadMorePokemon(){
+    renderAmount += 24;
+    init();
 }

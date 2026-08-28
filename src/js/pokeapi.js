@@ -1,6 +1,7 @@
 const BASE_URL = "https://pokeapi.co/api/v2/";
 
 const pokemonCache = {};
+let pokemonAmount = 0;
 
 async function getDataFromApi(pokemonAmount){
     for (let i = 0; i < pokemonAmount; i++) {
@@ -42,6 +43,17 @@ function pokemonModel(data){
         evolution_chain_url: "",
         evolution_chain: []
     };
+}
+
+async function getPokemonAmount() {
+    if (pokemonAmount) {
+        return pokemonAmount;
+    }
+    let response = await fetch(`${BASE_URL}pokemon`);
+    let data = await response.json();
+
+    pokemonAmount = data.count;
+    return pokemonAmount;
 }
 
 async function getEvolutionData(pokemonSpeciesUrl, pokemonId) {
