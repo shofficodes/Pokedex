@@ -37,6 +37,12 @@ header {
     border: 2px solid gray;
 }
 
+.favButton:hover,
+.darkButton:hover {
+    background-color: #f8f3eb;
+    cursor: pointer;
+}
+
 .favButton>img {
     width: 9px;
     height: 9px;
@@ -65,10 +71,6 @@ header {
     font-weight: bold;
 }
 
-.searchButton {
-    width: 96px;
-}
-
 .inputContainer {
     display: flex;
     flex-direction: column;
@@ -94,6 +96,7 @@ header {
     border: 3px solid black;
 
     font-size: 16px;
+    cursor: text;
 }
 
 .searchButton {
@@ -101,12 +104,23 @@ header {
     align-items: center;
     justify-content: center;
 
+    cursor: not-allowed;
+
     width: 96px;
     height: 40px;
     gap: 6px;
 
     background-color: transparent;
     border: 3px solid black;
+}
+
+.searchButtonActive {
+    background-color: #F5C518;
+    cursor: pointer;
+}
+
+.searchButtonActive:hover {
+    background-color: #FFD91A;
 }
 
 header>img {

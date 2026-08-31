@@ -11,6 +11,7 @@ async function init() {
 
     renderPokemons(renderAmount);
     await getPokemonAmount();
+    initSearchInput();
     renderLoadedAmount();
 }
 
@@ -33,4 +34,29 @@ function renderLoadedAmount(){
 function loadMorePokemon(){
     renderAmount += 24;
     init();
+}
+
+function initSearchInput() {
+    const searchInput = document.getElementById("searchInput");
+    const searchButton = document.getElementById("searchButton");
+
+    searchInput.addEventListener("input", () => {
+        const isValid = searchInput.value.length >= 3;
+
+        if (isValid) {
+            enableSearchButton(searchButton);
+        } else {
+            disableSearchButton(searchButton);
+        }
+    });
+}
+
+function enableSearchButton(button) {
+    button.classList.add("searchButtonActive");
+    button.onclick = getSearchResult;
+}
+
+function disableSearchButton(button) {
+    button.classList.remove("searchButtonActive");
+    button.onclick = null;
 }
