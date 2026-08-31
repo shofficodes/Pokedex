@@ -1,5 +1,5 @@
-- als nächstes die Header buttons + hover effekte hinzufügen! 
 - ebenso die favorite Liste erstellen und anlegen! 
+- local storage datei hinzufügen und dateien auslesen vor api calls!
 
 - suchleiste mit enter suchen lassen! 
 

@@ -70,15 +70,15 @@
     align-items: center;
     justify-content: center;
 
-    width: 12px;
-    height: 12px;
+    width: 16px;
+    height: 16px;
     border: none;
     background-color: transparent;
 }
 
 .cardFavButton>img {
-    width: 12px;
-    height: 12px;
+    width: 16px;
+    height: 16px;
 }
 
 .pokemonCardHeader {
@@ -169,4 +169,29 @@
     font-size: 72px;
 
     color: rgba(0, 0, 0, 0.17);
+}
+
+.cardFavButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 24px;
+    height: 24px;
+    border: none;
+    background-color: transparent;
+}
+
+.cardFavIcon {
+    width: 12px;
+    height: 12px;
+    transform: rotate(45deg);
+
+    border: 2px solid #FFFFFF;
+    background-color: transparent;
+}
+
+.cardFavIcon.cardFavIconActive {
+    border: none;
+    background-color: var(--accent);
 }

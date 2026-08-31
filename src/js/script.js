@@ -90,3 +90,8 @@ function showFavorites(){
 
     favButton.classList.toggle("favButtonEnabled");
 }
+
+function toggleFavIcon(button) {
+    const icon = button.querySelector(".cardFavIcon");
+    icon.classList.toggle("cardFavIconActive");
+}

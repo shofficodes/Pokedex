@@ -1,5 +1,5 @@
 main {
-    border: 3px solid black;
+    border: 3px solid var(--border);
     border-top: none;
     border-bottom: none;
 
@@ -76,7 +76,7 @@ main {
 }
 
 .pageFooter {
-    border: 3px solid black;
+    border: 3px solid var(--border);
     border-top: none;
     background-color: var(--app-bg);
 
@@ -85,8 +85,8 @@ main {
 
 .footerLine {
     height: 2px;
-    background-color: #101017;
-    margin-bottom: 16px;
+    background-color: var(--border);
+    margin-bottom: 24px;
 }
 
 .footerContent {
@@ -98,5 +98,6 @@ main {
     font-size: 12px;
     letter-spacing: 1px;
     text-transform: uppercase;
+    padding-bottom: 16px;
 }
 
