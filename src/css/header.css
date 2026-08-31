@@ -47,11 +47,12 @@
 
 .favButtonEnabled {
     background-color: var(--accent);
+    color: black;
     border: none;
 }
 
 .favButtonEnabled:hover {
-    background-color: var(--accent-ink);
+    background-color: #FFD91A;
 }
 
 .favButton>img {
@@ -135,11 +136,12 @@
 
 .searchButtonActive {
     background-color: var(--accent);
+    color: black;
     cursor: pointer;
 }
 
 .searchButtonActive:hover {
-    background-color: var(--accent-ink);
+    background-color: #FFD91A;
 }
 
 header>img {
