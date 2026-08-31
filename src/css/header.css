@@ -1,4 +1,4 @@
-header {
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -9,7 +9,8 @@ header {
     gap: 0px 12px;
     padding: 0pc 32px;
 
-    border: 3px solid black;
+    border: 3px solid var(--border);
+    background-color: var(--panel);
 }
 
 .headerInfo {
@@ -20,7 +21,7 @@ header {
     width: 160px;
 
     font-family: Archivo;
-    color: #655F56;
+    color: var(--ink-2);
     font-size: 16px;
 }
 
@@ -34,13 +35,23 @@ header {
     gap: 6px;
 
     background-color: transparent;
-    border: 2px solid gray;
+    border: 2px solid var(--border);
+    cursor: pointer;
 }
 
 .favButton:hover,
 .darkButton:hover {
-    background-color: #f8f3eb;
+    background-color: var(--surface-2);
     cursor: pointer;
+}
+
+.favButtonEnabled {
+    background-color: var(--accent);
+    border: none;
+}
+
+.favButtonEnabled:hover {
+    background-color: var(--accent-ink);
 }
 
 .favButton>img {
@@ -52,7 +63,7 @@ header {
 
 .favButton>span {
     font-size: 16px;
-    color: #655F56;
+    color: var(--ink-2);
 }
 
 .darkButton {
@@ -64,10 +75,10 @@ header {
     height: 32px;
 
     background-color: transparent;
-    border: 2px solid gray;
+    border: 2px solid var(--border);
 
     font-size: 16px;
-    color: #655F56;
+    color: var(--ink-2);
     font-weight: bold;
 }
 
@@ -79,7 +90,7 @@ header {
 
     gap: 2px;
     width: 100%;
-    color: #655F56;
+    color: var(--ink-2);
     font-weight: 300;
 }
 
@@ -93,10 +104,17 @@ header {
     width: 100%;
     height: 40px;
 
-    border: 3px solid black;
+    border: 3px solid var(--border);
+    background-color: var(--input);
+    color: var(--ink);
 
     font-size: 16px;
     cursor: text;
+}
+
+.searchContainer>input:focus {
+    border: 3px solid var(--accent-ink);
+    outline: none;
 }
 
 .searchButton {
@@ -109,18 +127,19 @@ header {
     width: 96px;
     height: 40px;
     gap: 6px;
+    color: var(--ink-2);
 
     background-color: transparent;
-    border: 3px solid black;
+    border: 3px solid var(--border);
 }
 
 .searchButtonActive {
-    background-color: #F5C518;
+    background-color: var(--accent);
     cursor: pointer;
 }
 
 .searchButtonActive:hover {
-    background-color: #FFD91A;
+    background-color: var(--accent-ink);
 }
 
 header>img {
@@ -132,4 +151,9 @@ header>div>h1 {
     font-family: "ArchivoBlack";
     font-size: 24px;
     font-weight: 400;
+    color: var(--ink);
+}
+
+.searchHint{
+    color: var(--accent-ink);
 }

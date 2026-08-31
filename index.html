@@ -18,6 +18,7 @@
     <script src="./src/js/pokeapi.js"></script>
     <script src="./src/js/templates.js"></script>
     <script src="./src/js/script.js"></script>
+    <script src="./src/js/darkMode.js"></script>
 </head>
 
 <body onload="init()">
@@ -31,14 +32,14 @@
                 <p>151 ENTRIES</p>
             </div>
         </div>
-        <button class="favButton"><img src="./assets/icons/saved_icon.png" alt="favorite_icon"><span>0</span></button>
-        <button class="darkButton">LIGHT</button>
+        <button id="favButton" class="favButton" onclick="showFavorites()"><img src="./assets/icons/saved_icon.png" alt="favorite_icon"><span>0</span></button>
+        <button class="darkButton" onclick="toggleDarkMode()">LIGHT</button>
         <div class="inputContainer">
             <div class="searchContainer">
                 <input id="searchInput" type="Search" placeholder="Search by name...">
                 <button class="searchButton" id="searchButton">SEARCH</button>
             </div>
-            <p>TYPE AT LEAST 3 CHARACTERS</p>
+            <p id="searchHint">TYPE AT LEAST 3 CHARACTERS</p>
         </div>
     </header>
 

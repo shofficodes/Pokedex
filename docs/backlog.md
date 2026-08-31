@@ -1,6 +1,8 @@
 - als nächstes die Header buttons + hover effekte hinzufügen! 
 - ebenso die favorite Liste erstellen und anlegen! 
 
+- suchleiste mit enter suchen lassen! 
+
 - dann die Pokemon Karten Detail ansicht erstellen!
 
 - dann die search logik implementieren!

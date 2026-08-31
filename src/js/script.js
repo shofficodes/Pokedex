@@ -39,9 +39,13 @@ function loadMorePokemon(){
 function initSearchInput() {
     const searchInput = document.getElementById("searchInput");
     const searchButton = document.getElementById("searchButton");
+    const searchHint = document.getElementById("searchHint");
 
     searchInput.addEventListener("input", () => {
-        const isValid = searchInput.value.length >= 3;
+        const length = searchInput.value.length;
+        const isValid = length >= 3;
+
+        updateSearchHint(searchHint, length);
 
         if (isValid) {
             enableSearchButton(searchButton);
@@ -59,4 +63,30 @@ function enableSearchButton(button) {
 function disableSearchButton(button) {
     button.classList.remove("searchButtonActive");
     button.onclick = null;
+}
+
+function updateSearchHint(hintElement, length) {
+    if (length === 0) {
+        hintElement.textContent = "";
+        hintElement.textContent = "TYPE AT LEAST 3 CHARACTERS";
+        hintElement.classList.remove("searchHint");
+    } else if (length === 1) {
+        hintElement.textContent = "";
+        hintElement.textContent = "2 MORE CHARACTERS TO SEARCH";
+        hintElement.classList.remove("searchHint");
+    } else if (length === 2) {
+        hintElement.textContent = "";
+        hintElement.textContent = "1 MORE CHARACTER TO SEARCH";
+        hintElement.classList.remove("searchHint");
+    } else {
+        hintElement.textContent = "";
+        hintElement.textContent = "Press SEARCH or Enter";
+        hintElement.classList.add("searchHint");
+    }
+}
+
+function showFavorites(){
+    const favButton = document.getElementById("favButton");
+
+    favButton.classList.toggle("favButtonEnabled");
 }
