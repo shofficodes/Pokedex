@@ -13,6 +13,7 @@ async function init() {
     await getPokemonAmount();
     initSearchInput();
     renderLoadedAmount();
+    setLoadingState(false);
 }
 
 function renderPokemons(amount){
@@ -33,6 +34,7 @@ function renderLoadedAmount(){
 
 function loadMorePokemon(){
     renderAmount += 24;
+    setLoadingState(true);
     init();
 }
 
@@ -94,4 +96,19 @@ function showFavorites(){
 function toggleFavIcon(button) {
     const icon = button.querySelector(".cardFavIcon");
     icon.classList.toggle("cardFavIconActive");
+}
+
+function setLoadingState(isLoading) {
+    const button = document.getElementById("loadMoreButton");
+    const infoText = document.getElementById("loadedAmountInfo");
+
+    if (isLoading) {
+        button.classList.add("isLoading");
+        button.disabled = true;
+        button.textContent = "LOADING";
+        infoText.textContent = "FETCHING BATCH · BUTTON LOCKED";
+    } else {
+        button.classList.remove("isLoading");
+        button.disabled = false;
+    }
 }

@@ -1,5 +1,3 @@
-- favButton nav bar falscher hover effekt! auch search button!
-
 - loadButton effekt! 
 - loadPage effekt! 
 

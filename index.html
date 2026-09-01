@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./src/css/pokemonCard.css">
     <link rel="stylesheet" href="./src/css/pokemonColors.css">
     <link rel="stylesheet" href="./src/css/themeColors.css">
+    <link rel="stylesheet" href="./src/css/loadingButton.css">
 
     <script src="./src/js/pokeapi.js"></script>
     <script src="./src/js/templates.js"></script>
@@ -57,7 +58,7 @@
         <div class="loadMoreWrapper">
             <div class="loadMoreInner">
                 <div class="loadMoreShadow"></div>
-                <button onclick="loadMorePokemon()" class="loadMoreButton">LOAD MORE</button>
+                <button onclick="loadMorePokemon()" class="loadMoreButton" id="loadMoreButton">LOAD MORE</button>
             </div>
         </div>
         <p class="loadedAmountInfo" id="loadedAmountInfo"></p>
