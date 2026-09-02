@@ -18,6 +18,7 @@ async function init() {
     await getPokemonAmount();
     initSearchInput();
     renderLoadedAmount();
+    renderFavoriteCount();
     setLoadingState(false);
 
     if (isInitialLoad) {
@@ -144,8 +145,28 @@ function getSearchResult(query) {
 
 function showFavorites() {
     const favButton = document.getElementById("favButton");
+    const isActive = favButton.classList.toggle("favButtonEnabled");
 
-    favButton.classList.toggle("favButtonEnabled");
+    if (isActive) {
+        renderFavoritePokemons();
+    } else {
+        renderPokemons(renderAmount);
+    }
+}
+
+function renderFavoritePokemons() {
+    const pokemonElement = document.getElementById("pokemons");
+    const favoritedPokemon = favorites.filter(id => pokemonCache[id]);
+
+    if (favoritedPokemon.length === 0) {
+        pokemonElement.innerHTML = `<p data-id="not-found">No favorites yet.</p>`;
+        return;
+    }
+    let htmlContent = "";
+    favoritedPokemon.forEach(id => {
+        htmlContent += pokemonCardTemplate(id);
+    });
+    pokemonElement.innerHTML = htmlContent;
 }
 
 function toggleFavIcon(button) {
@@ -162,7 +183,13 @@ function toggleFavorites(pokeIndex) {
         favorites.push(pokeIndex);
     }
 
+    renderFavoriteCount();
     saveDataToLocalStorage();
+}
+
+function renderFavoriteCount() {
+    const favCountElement = document.querySelector("#favButton > span");
+    favCountElement.textContent = favorites.length;
 }
 
 function setLoadingState(isLoading) {
