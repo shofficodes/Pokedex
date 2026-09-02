@@ -108,8 +108,10 @@
 }
 
 .cardContent>h2 {
-    font-size: 24px;
+    font-size: 21px;
     font-family: ArchivoBlack;
+    line-height: 1.15;
+    overflow-wrap: break-word;
 }
 
 .cardImgWrapper {

@@ -233,6 +233,7 @@ body.dialogOpen {
     position: relative;
     flex: 1;
     overflow-y: auto;
+    container-type: inline-size;
 
     padding: 24px;
 }
@@ -257,7 +258,7 @@ body.dialogOpen {
 
 .dialogInfoPanel>h2 {
     font-family: ArchivoBlack;
-    font-size: 28px;
+    font-size: clamp(20px, 9cqw, 28px);
     margin-bottom: 8px;
 }
 
