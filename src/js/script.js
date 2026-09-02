@@ -34,13 +34,11 @@ function consoleLog(log) {
 
 function renderPokemons(amount) {
     let pokemonElement = document.getElementById("pokemons");
-    let htmlContent = "";
+    pokemonElement.innerHTML = "";
 
     for (let i = 0; i < amount; i++) {
-        htmlContent += pokemonCardTemplate(i + 1);
+        pokemonElement.innerHTML += pokemonCardTemplate(i + 1);
     }
-
-    pokemonElement.innerHTML = htmlContent;
 }
 
 function renderLoadedAmount() {
@@ -50,10 +48,10 @@ function renderLoadedAmount() {
     loadedAmountTag.innerHTML = `${renderAmount} OF ${pokemonAmount} · NEXT BATCH 24`;
 }
 
-function loadMorePokemon() {
+async function loadMorePokemon() {
     renderAmount += 24;
     setLoadingState(true);
-    init();
+    await init();
 }
 
 function initSearchInput() {
@@ -132,17 +130,16 @@ function getSearchResult(query) {
         pokemon.name.toLowerCase().includes(normalizedQuery)
     );
 
+    pokemonElement.innerHTML = "";
+
     if (matches.length === 0) {
         pokemonElement.innerHTML = `<p data-id="not-found">No Pokémon found for "${query}"</p>`;
         return;
     }
 
-    let htmlContent = "";
     matches.forEach(pokemon => {
-        htmlContent += pokemonCardTemplate(pokemon.id);
+        pokemonElement.innerHTML += pokemonCardTemplate(pokemon.id);
     });
-
-    pokemonElement.innerHTML = htmlContent;
 }
 
 function showFavorites() {

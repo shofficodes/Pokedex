@@ -1,0 +1,513 @@
+.pokemonDialog {
+    padding: 0;
+    margin: auto;
+    border: 3px solid var(--edge);
+    background-color: var(--panel);
+    color: var(--ink);
+
+    width: min(720px, 90vw);
+    max-height: 85vh;
+    overflow: hidden;
+}
+
+.pokemonDialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+body.dialogOpen {
+    overflow: hidden;
+}
+
+.dialogContent {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 85vh;
+}
+
+@media (min-width: 768px) {
+    .dialogContent {
+        flex-direction: row;
+    }
+}
+
+.dialogImagePanel {
+    position: relative;
+    overflow: hidden;
+
+    width: 100%;
+    min-height: 280px;
+    flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+    .dialogImagePanel {
+        width: 45%;
+    }
+}
+
+.dialogSplit {
+    position: absolute;
+    inset: 0;
+}
+
+.dialogSplitA {
+    z-index: 2;
+
+    -webkit-mask-image: linear-gradient(135deg, black 0%, black 42%, transparent 58%, transparent 100%);
+    mask-image: linear-gradient(135deg, black 0%, black 42%, transparent 58%, transparent 100%);
+}
+
+.dialogSplitB {
+    z-index: 1;
+}
+
+.dialogSplit[data-type="normal"] {
+    background-color: var(--type-normal);
+}
+
+.dialogSplit[data-type="fire"] {
+    background-color: var(--type-fire);
+}
+
+.dialogSplit[data-type="water"] {
+    background-color: var(--type-water);
+}
+
+.dialogSplit[data-type="electric"] {
+    background-color: var(--type-electric);
+}
+
+.dialogSplit[data-type="grass"] {
+    background-color: var(--type-grass);
+}
+
+.dialogSplit[data-type="ice"] {
+    background-color: var(--type-ice);
+}
+
+.dialogSplit[data-type="fighting"] {
+    background-color: var(--type-fighting);
+}
+
+.dialogSplit[data-type="poison"] {
+    background-color: var(--type-poison);
+}
+
+.dialogSplit[data-type="ground"] {
+    background-color: var(--type-ground);
+}
+
+.dialogSplit[data-type="flying"] {
+    background-color: var(--type-flying);
+}
+
+.dialogSplit[data-type="psychic"] {
+    background-color: var(--type-psychic);
+}
+
+.dialogSplit[data-type="bug"] {
+    background-color: var(--type-bug);
+}
+
+.dialogSplit[data-type="rock"] {
+    background-color: var(--type-rock);
+}
+
+.dialogSplit[data-type="ghost"] {
+    background-color: var(--type-ghost);
+}
+
+.dialogSplit[data-type="dragon"] {
+    background-color: var(--type-dragon);
+}
+
+.dialogSplit[data-type="dark"] {
+    background-color: var(--type-dark);
+}
+
+.dialogSplit[data-type="steel"] {
+    background-color: var(--type-steel);
+}
+
+.dialogSplit[data-type="fairy"] {
+    background-color: var(--type-fairy);
+}
+
+.dialogImagePanel[data-type="normal"] {
+    --dialog-ink: var(--type-normal-font);
+}
+
+.dialogImagePanel[data-type="fire"] {
+    --dialog-ink: var(--type-fire-font);
+}
+
+.dialogImagePanel[data-type="water"] {
+    --dialog-ink: var(--type-water-font);
+}
+
+.dialogImagePanel[data-type="electric"] {
+    --dialog-ink: var(--type-electric-font);
+}
+
+.dialogImagePanel[data-type="grass"] {
+    --dialog-ink: var(--type-grass-font);
+}
+
+.dialogImagePanel[data-type="ice"] {
+    --dialog-ink: var(--type-ice-font);
+}
+
+.dialogImagePanel[data-type="fighting"] {
+    --dialog-ink: var(--type-fighting-font);
+}
+
+.dialogImagePanel[data-type="poison"] {
+    --dialog-ink: var(--type-poison-font);
+}
+
+.dialogImagePanel[data-type="ground"] {
+    --dialog-ink: var(--type-ground-font);
+}
+
+.dialogImagePanel[data-type="flying"] {
+    --dialog-ink: var(--type-flying-font);
+}
+
+.dialogImagePanel[data-type="psychic"] {
+    --dialog-ink: var(--type-psychic-font);
+}
+
+.dialogImagePanel[data-type="bug"] {
+    --dialog-ink: var(--type-bug-font);
+}
+
+.dialogImagePanel[data-type="rock"] {
+    --dialog-ink: var(--type-rock-font);
+}
+
+.dialogImagePanel[data-type="ghost"] {
+    --dialog-ink: var(--type-ghost-font);
+}
+
+.dialogImagePanel[data-type="dragon"] {
+    --dialog-ink: var(--type-dragon-font);
+}
+
+.dialogImagePanel[data-type="dark"] {
+    --dialog-ink: var(--type-dark-font);
+}
+
+.dialogImagePanel[data-type="steel"] {
+    --dialog-ink: var(--type-steel-font);
+}
+
+.dialogImagePanel[data-type="fairy"] {
+    --dialog-ink: var(--type-fairy-font);
+}
+
+.dialogId {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 2;
+
+    font-family: ArchivoBlack;
+    font-size: 14px;
+    color: var(--dialog-ink, #FFFFFF);
+}
+
+.dialogImage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+
+    width: 260px;
+    height: 260px;
+    object-fit: contain;
+}
+
+.dialogInfoPanel {
+    position: relative;
+    flex: 1;
+    overflow-y: auto;
+
+    padding: 24px;
+}
+
+.dialogCloseButton {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+
+    width: 32px;
+    height: 32px;
+
+    border: 2px solid var(--border);
+    background-color: transparent;
+    color: var(--ink);
+    cursor: pointer;
+}
+
+.dialogCloseButton:hover {
+    background-color: var(--surface-2);
+}
+
+.dialogInfoPanel>h2 {
+    font-family: ArchivoBlack;
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.dialogInfoPanel>h3 {
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: var(--ink-2);
+}
+
+.dialogInfoPanel .typeWrapper>span[data-type="normal"] {
+    background-color: var(--type-normal);
+    border-color: var(--chip-line-normal);
+    color: var(--type-normal-font);
+}
+
+.dialogInfoPanel .typeWrapper>span[data-type="fire"] {
+    background-color: var(--type-fire);
+    border-color: var(--chip-line-fire);
+    color: var(--type-fire-font);
+}
+
+.dialogInfoPanel .typeWrapper>span[data-type="water"] {
+    background-color: var(--type-water);
+    border-color: var(--chip-line-water);
+    color: var(--type-water-font);
+}
+
+.dialogInfoPanel .typeWrapper>span[data-type="electric"] {
+    background-color: var(--type-electric);
+    border-color: var(--chip-line-electric);
+    color: var(--type-electric-font);
+}
+
+.dialogInfoPanel .typeWrapper>span[data-type="grass"] {
+    background-color: var(--type-grass);
+    border-color: var(--chip-line-grass);
+    color: var(--type-grass-font);
+}
+
+.dialogInfoPanel .typeWrapper>span[data-type="ice"] {
+    background-color: var(--type-ice);
+    border-color: var(--chip-line-ice);
+    color: var(--type-ice-font);
+}
+
+.dialogInfoPanel .typeWrapper>span[data-type="fighting"] {
+    background-color: var(--type-fighting);
+    border-color: var(--chip-line-fighting);
+    color: var(--type-fighting-font);
+}
+
+.dialogInfoPanel .typeWrapper>span[data-type="poison"] {
+    background-color: var(--type-poison);
+    border-color: var(--chip-line-poison);
+    color: var(--type-poison-font);
+}
+
+.dialogInfoPanel .typeWrapper>span[data-type="ground"] {
+    background-color: var(--type-ground);
+    border-color: var(--chip-line-ground);
+    color: var(--type-ground-font);
+}
+
+.dialogInfoPanel .typeWrapper>span[data-type="flying"] {
+    background-color: var(--type-flying);
+    border-color: var(--chip-line-flying);
+    color: var(--type-flying-font);
+}
+
+.dialogInfoPanel .typeWrapper>span[data-type="psychic"] {
+    background-color: var(--type-psychic);
+    border-color: var(--chip-line-psychic);
+    color: var(--type-psychic-font);
+}
+
+.dialogInfoPanel .typeWrapper>span[data-type="bug"] {
+    background-color: var(--type-bug);
+    border-color: var(--chip-line-bug);
+    color: var(--type-bug-font);
+}
+
+.dialogInfoPanel .typeWrapper>span[data-type="rock"] {
+    background-color: var(--type-rock);
+    border-color: var(--chip-line-rock);
+    color: var(--type-rock-font);
+}
+
+.dialogInfoPanel .typeWrapper>span[data-type="ghost"] {
+    background-color: var(--type-ghost);
+    border-color: var(--chip-line-ghost);
+    color: var(--type-ghost-font);
+}
+
+.dialogInfoPanel .typeWrapper>span[data-type="dragon"] {
+    background-color: var(--type-dragon);
+    border-color: var(--chip-line-dragon);
+    color: var(--type-dragon-font);
+}
+
+.dialogInfoPanel .typeWrapper>span[data-type="dark"] {
+    background-color: var(--type-dark);
+    border-color: var(--chip-line-dark);
+    color: var(--type-dark-font);
+}
+
+.dialogInfoPanel .typeWrapper>span[data-type="steel"] {
+    background-color: var(--type-steel);
+    border-color: var(--chip-line-steel);
+    color: var(--type-steel-font);
+}
+
+.dialogInfoPanel .typeWrapper>span[data-type="fairy"] {
+    background-color: var(--type-fairy);
+    border-color: var(--chip-line-fairy);
+    color: var(--type-fairy-font);
+}
+
+.dialogAboutList {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 16px;
+    margin-top: 20px;
+}
+
+.dialogAboutList dt {
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--ink-2);
+    letter-spacing: 1px;
+}
+
+.dialogAboutList dd {
+    font-size: 14px;
+}
+
+.statRow {
+    display: grid;
+    grid-template-columns: 70px 32px 1fr;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 6px;
+}
+
+.statLabel {
+    font-size: 11px;
+    font-weight: bold;
+    color: var(--ink-2);
+    letter-spacing: 1px;
+}
+
+.statValue {
+    font-size: 12px;
+    font-weight: bold;
+    text-align: right;
+}
+
+.statBarTrack {
+    display: flex;
+    gap: 1px;
+}
+
+.statSegment {
+    flex: 1;
+    height: 8px;
+    background-color: var(--surface-2);
+}
+
+.statSegmentFilled {
+    background-color: var(--accent-ink);
+}
+
+.dialogEvolutionWrapper {
+    display: flex;
+    gap: 12px;
+}
+
+.dialogEvolutionLoading {
+    font-size: 12px;
+    color: var(--ink-2);
+}
+
+.evolutionStage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    flex: 1;
+    padding: 12px 8px;
+
+    border: 2px solid var(--border);
+    background-color: var(--surface);
+    color: var(--ink);
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.evolutionStage:hover {
+    background-color: var(--surface-2);
+}
+
+.evolutionStage>img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 8px;
+}
+
+.evolutionStage>p {
+    font-size: 10px;
+    text-align: center;
+}
+
+.evolutionStage>p:first-of-type {
+    font-weight: bold;
+}
+
+.evolutionStageCurrent {
+    border-color: var(--accent);
+    background-color: var(--surface-2);
+    cursor: default;
+}
+
+.dialogNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 2px solid var(--border);
+}
+
+.dialogNav button {
+    width: 40px;
+    height: 40px;
+
+    border: 2px solid var(--border);
+    background-color: transparent;
+    color: var(--ink);
+    cursor: pointer;
+}
+
+.dialogNav button:hover {
+    background-color: var(--surface-2);
+}
+
+.dialogNav p {
+    font-size: 12px;
+    color: var(--ink-2);
+    letter-spacing: 1px;
+}

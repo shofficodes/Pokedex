@@ -4,10 +4,10 @@ function pokemonCardTemplate(pokeIndex) {
 
     return `
         <div class="pokemonCardWrapper">
-                <section class="pokemonCard" data-id="card" data-type="${pokemonCache[pokeIndex].types[0]}">
+                <section class="pokemonCard" data-id="card" data-type="${pokemonCache[pokeIndex].types[0]}" onclick="openPokemonDialog(${pokeIndex})">
                     <header class="pokemonCardHeader">
                         <p>${formatPokemonId(pokemonCache[pokeIndex].id)}</p>
-                        <button class="cardFavButton" data-id="favButton" aria-label="Add to favorite" onclick="toggleFavIcon(this); toggleFavorites(${pokeIndex})">
+                        <button class="cardFavButton" data-id="favButton" aria-label="Add to favorite" onclick="event.stopPropagation(); toggleFavIcon(this); toggleFavorites(${pokeIndex})">
                             <div class="${favIconClass}" aria-hidden="true"></div>
                         </button>
                     </header>
@@ -48,4 +48,55 @@ function toUpperCaseString(input) {
 
 function formatPokemonId(id) {
     return "#" + String(id).padStart(3, "0");
+}
+
+function pokemonDialogTemplate(pokemon) {
+    const primaryType = pokemon.types[0];
+    const secondaryType = pokemon.types[1] || pokemon.types[0];
+
+    return `
+        <div data-id="overlay-pokemon-name" class="dialogContent">
+            <div class="dialogImagePanel" data-type="${primaryType}">
+                <div class="dialogSplit dialogSplitA" data-type="${primaryType}"></div>
+                <div class="dialogSplit dialogSplitB" data-type="${secondaryType}"></div>
+                <p class="dialogId">${formatPokemonId(pokemon.id)}</p>
+                <img data-id="dialog-image" class="dialogImage" src="${pokemon.image}" alt="${pokemon.name}_Image">
+            </div>
+
+            <div class="dialogInfoPanel">
+                <button data-id="close-dialog-button" class="dialogCloseButton" aria-label="Close dialog" onclick="closeDialog()">✕</button>
+
+                <h2>${toUpperCaseString(pokemon.name)}</h2>
+                <div class="typeWrapper">
+                    ${getTypeHTML(pokemon.id)}
+                </div>
+
+                <dl class="dialogAboutList">
+                    <dt>SPECIES</dt><dd>${toUpperCaseString(pokemon.species)}</dd>
+                    <dt>HEIGHT</dt><dd>${(pokemon.height / 10).toFixed(1)} M</dd>
+                    <dt>WEIGHT</dt><dd>${(pokemon.weight / 10).toFixed(1)} KG</dd>
+                    <dt>ABILITIES</dt><dd>${pokemon.abilities.map(toUpperCaseString).join(", ")}</dd>
+                </dl>
+
+                <h3>BASE STATS</h3>
+                ${getStatBarHTML("HP", pokemon.hp)}
+                ${getStatBarHTML("ATTACK", pokemon.attack)}
+                ${getStatBarHTML("DEFENSE", pokemon.defense)}
+                ${getStatBarHTML("SP. ATK", pokemon.sp_attack)}
+                ${getStatBarHTML("SP. DEF", pokemon.sp_defense)}
+                ${getStatBarHTML("SPEED", pokemon.speed)}
+
+                <h3>EVOLUTION</h3>
+                <div class="dialogEvolutionWrapper">
+                    ${getEvolutionHTML(pokemon)}
+                </div>
+
+                <div class="dialogNav">
+                    <button data-id="prev-button" aria-label="Previous Pokémon" onclick="showPreviousPokemon()">←</button>
+                    <p>${pokemon.id} / ${renderAmount}</p>
+                    <button data-id="next-button" aria-label="Next Pokémon" onclick="showNextPokemon()">→</button>
+                </div>
+            </div>
+        </div>
+    `;
 }
