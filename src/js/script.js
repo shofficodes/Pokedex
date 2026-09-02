@@ -8,7 +8,6 @@ async function init() {
         renderAmount = 24;
         loadDataFromLocalStorage();
         showPokeballLoader(true);
-        consoleLog(true);
     }
 
     const cachedCountBefore = Object.keys(pokemonCache).length;
@@ -63,12 +62,6 @@ function dismissApiError(button) {
 
 function retryFailedLoad() {
     init();
-}
-
-function consoleLog(log) {
-    if (log) {
-        console.log("type 'testPokeballLoader()' to test the Pokeball Loader animation");
-    }
 }
 
 function renderPokemons(amount) {
@@ -192,6 +185,7 @@ function getSearchResult(query) {
 
     if (matches.length === 0) {
         document.getElementById("pokemons").innerHTML = getNotFoundHtml(query);
+        setLoadMoreVisible(false);
         return;
     }
 
@@ -214,8 +208,10 @@ function showFavorites() {
     const isActive = favButton.classList.toggle("favButtonEnabled");
 
     if (isActive) {
+        setLoadMoreVisible(false);
         renderFavoritePokemons();
     } else {
+        setLoadMoreVisible(true);
         renderPokemons(renderAmount);
     }
 }
