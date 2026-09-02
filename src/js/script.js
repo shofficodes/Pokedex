@@ -1,4 +1,5 @@
 let renderAmount = null;
+let favorites = [];
 
 async function init() {
     const isInitialLoad = !renderAmount;
@@ -33,11 +34,13 @@ function consoleLog(log) {
 
 function renderPokemons(amount) {
     let pokemonElement = document.getElementById("pokemons");
-    pokemonElement.innerHTML = "";
+    let htmlContent = "";
 
     for (let i = 0; i < amount; i++) {
-        pokemonElement.innerHTML += pokemonCardTemplate(i + 1);
+        htmlContent += pokemonCardTemplate(i + 1);
     }
+
+    pokemonElement.innerHTML = htmlContent;
 }
 
 function renderLoadedAmount() {
@@ -60,46 +63,86 @@ function initSearchInput() {
 
     searchInput.addEventListener("input", () => {
         const length = searchInput.value.length;
-        const isValid = length >= 3;
-
         updateSearchHint(searchHint, length);
 
-        if (isValid) {
-            enableSearchButton(searchButton);
-        } else {
+        if (length === 0) {
             disableSearchButton(searchButton);
+            resetSearch();
+            return;
+        }
+
+        if (length < 3) {
+            disableSearchButton(searchButton);
+            return;
+        }
+
+        enableSearchButton(searchButton);
+        getSearchResult(searchInput.value);
+    });
+
+    searchInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            searchInput.blur();
         }
     });
+
+    searchButton.addEventListener("click", () => {
+        searchInput.blur();
+    });
+}
+
+function resetSearch() {
+    renderPokemons(renderAmount);
 }
 
 function enableSearchButton(button) {
     button.classList.add("searchButtonActive");
-    button.onclick = getSearchResult;
+    button.disabled = false;
 }
 
 function disableSearchButton(button) {
     button.classList.remove("searchButtonActive");
-    button.onclick = null;
+    button.disabled = true;
 }
 
 function updateSearchHint(hintElement, length) {
+    hintElement.classList.remove("searchHintError");
+
     if (length === 0) {
-        hintElement.textContent = "";
         hintElement.textContent = "TYPE AT LEAST 3 CHARACTERS";
         hintElement.classList.remove("searchHint");
     } else if (length === 1) {
-        hintElement.textContent = "";
         hintElement.textContent = "2 MORE CHARACTERS TO SEARCH";
         hintElement.classList.remove("searchHint");
     } else if (length === 2) {
-        hintElement.textContent = "";
         hintElement.textContent = "1 MORE CHARACTER TO SEARCH";
         hintElement.classList.remove("searchHint");
     } else {
-        hintElement.textContent = "";
-        hintElement.textContent = "Press SEARCH or Enter";
+        hintElement.textContent = "SHOWING LIVE RESULTS";
         hintElement.classList.add("searchHint");
     }
+}
+
+function getSearchResult(query) {
+    const normalizedQuery = query.trim().toLowerCase();
+    const pokemonElement = document.getElementById("pokemons");
+
+    const matches = Object.values(pokemonCache).filter(pokemon =>
+        pokemon.name.toLowerCase().includes(normalizedQuery)
+    );
+
+    if (matches.length === 0) {
+        pokemonElement.innerHTML = `<p data-id="not-found">No Pokémon found for "${query}"</p>`;
+        return;
+    }
+
+    let htmlContent = "";
+    matches.forEach(pokemon => {
+        htmlContent += pokemonCardTemplate(pokemon.id);
+    });
+
+    pokemonElement.innerHTML = htmlContent;
 }
 
 function showFavorites() {
@@ -111,6 +154,18 @@ function showFavorites() {
 function toggleFavIcon(button) {
     const icon = button.querySelector(".cardFavIcon");
     icon.classList.toggle("cardFavIconActive");
+}
+
+function toggleFavorites(pokeIndex) {
+    const index = favorites.indexOf(pokeIndex);
+
+    if (index !== -1) {
+        favorites.splice(index, 1);
+    } else {
+        favorites.push(pokeIndex);
+    }
+
+    saveDataToLocalStorage();
 }
 
 function setLoadingState(isLoading) {
@@ -139,18 +194,4 @@ function showPokeballLoader(isVisible) {
         loader.classList.remove("visible");
         pokemonSection.classList.remove("hidden");
     }
-}
-
-let favorites = [];
-
-function toggleFavorites(pokeIndex) {
-    const index = favorites.indexOf(pokeIndex);
-
-    if (index !== -1) {
-        favorites.splice(index, 1);
-    } else {
-        favorites.push(pokeIndex);
-    }
-
-    saveDataToLocalStorage();
 }
