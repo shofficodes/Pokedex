@@ -160,3 +160,15 @@ function getEvolutionHTML(pokemon) {
 
     return evolutionHtml;
 }
+
+function switchDialogTab(tabName, clickedButton) {
+    const sections = document.querySelectorAll(".dialogSection");
+    sections.forEach(section => {
+        section.classList.toggle("dialogSectionActive", section.dataset.tab === tabName);
+    });
+
+    const tabs = document.querySelectorAll(".dialogTab");
+    tabs.forEach(tab => {
+        tab.classList.toggle("dialogTabActive", tab === clickedButton);
+    });
+}

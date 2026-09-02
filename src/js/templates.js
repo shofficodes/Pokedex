@@ -127,3 +127,67 @@ function getApiErrorHtml(dismissible = false) {
         </div>
     `;
 }
+
+function pokemonDialogTemplate(pokemon) {
+    const primaryType = pokemon.types[0];
+    const secondaryType = pokemon.types[1] || pokemon.types[0];
+
+    return `
+        <div data-id="overlay-pokemon-name" class="dialogContent">
+            <div class="dialogImagePanel" data-type="${primaryType}">
+                <div class="dialogSplit dialogSplitA" data-type="${primaryType}"></div>
+                <div class="dialogSplit dialogSplitB" data-type="${secondaryType}"></div>
+                <p class="dialogId">${formatPokemonId(pokemon.id)}</p>
+                <img data-id="dialog-image" class="dialogImage" src="${pokemon.image}" alt="${pokemon.name}_Image">
+            </div>
+
+            <div class="dialogInfoPanel">
+                <button data-id="close-dialog-button" class="dialogCloseButton" aria-label="Close dialog" onclick="closeDialog()">✕</button>
+
+                <h2>${toUpperCaseString(pokemon.name)}</h2>
+                <div class="typeWrapper">
+                    ${getTypeHTML(pokemon.id)}
+                </div>
+
+                <div class="dialogTabs">
+                    <button type="button" class="dialogTab dialogTabActive" data-tab="about" onclick="switchDialogTab('about', this)">ABOUT</button>
+                    <button type="button" class="dialogTab" data-tab="stats" onclick="switchDialogTab('stats', this)">BASE STATS</button>
+                    <button type="button" class="dialogTab" data-tab="evolution" onclick="switchDialogTab('evolution', this)">EVOLUTION</button>
+                </div>
+
+                <div class="dialogSection dialogSectionActive" data-tab="about">
+                    <dl class="dialogAboutList">
+                        <dt>SPECIES</dt><dd>${toUpperCaseString(pokemon.species)}</dd>
+                        <dt>HEIGHT</dt><dd>${(pokemon.height / 10).toFixed(1)} M</dd>
+                        <dt>WEIGHT</dt><dd>${(pokemon.weight / 10).toFixed(1)} KG</dd>
+                        <dt>ABILITIES</dt><dd>${pokemon.abilities.map(toUpperCaseString).join(", ")}</dd>
+                        <dt>TYPES</dt><dd>${pokemon.types.join(" / ")}</dd>
+                    </dl>
+                </div>
+
+                <div class="dialogSection" data-tab="stats">
+                    <h3>BASE STATS</h3>
+                    ${getStatBarHTML("HP", pokemon.hp)}
+                    ${getStatBarHTML("ATTACK", pokemon.attack)}
+                    ${getStatBarHTML("DEFENSE", pokemon.defense)}
+                    ${getStatBarHTML("SP. ATK", pokemon.sp_attack)}
+                    ${getStatBarHTML("SP. DEF", pokemon.sp_defense)}
+                    ${getStatBarHTML("SPEED", pokemon.speed)}
+                </div>
+
+                <div class="dialogSection" data-tab="evolution">
+                    <h3>EVOLUTION</h3>
+                    <div class="dialogEvolutionWrapper">
+                        ${getEvolutionHTML(pokemon)}
+                    </div>
+                </div>
+
+                <div class="dialogNav">
+                    <button data-id="prev-button" aria-label="Previous Pokémon" onclick="showPreviousPokemon()">←</button>
+                    <p>${pokemon.id} / ${renderAmount}</p>
+                    <button data-id="next-button" aria-label="Next Pokémon" onclick="showNextPokemon()">→</button>
+                </div>
+            </div>
+        </div>
+    `;
+}
