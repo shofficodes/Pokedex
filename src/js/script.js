@@ -76,6 +76,7 @@ function initSearchInput() {
         }
 
         enableSearchButton(searchButton);
+        setLoadMoreVisible(false);
         getSearchResult(searchInput.value);
     });
 
@@ -92,7 +93,16 @@ function initSearchInput() {
 }
 
 function resetSearch() {
+    setLoadMoreVisible(true);
     renderPokemons(renderAmount);
+}
+
+function setLoadMoreVisible(isVisible) {
+    const loadMoreWrapper = document.querySelector(".loadMoreWrapper");
+    const loadedAmountInfo = document.getElementById("loadedAmountInfo");
+
+    loadMoreWrapper.classList.toggle("hidden", !isVisible);
+    loadedAmountInfo.classList.toggle("hidden", !isVisible);
 }
 
 function enableSearchButton(button) {
@@ -123,24 +133,42 @@ function updateSearchHint(hintElement, length) {
     }
 }
 
-function getSearchResult(query) {
+function getMatchingPokemon(query) {
     const normalizedQuery = query.trim().toLowerCase();
-    const pokemonElement = document.getElementById("pokemons");
-
-    const matches = Object.values(pokemonCache).filter(pokemon =>
+    return Object.values(pokemonCache).filter(pokemon =>
         pokemon.name.toLowerCase().includes(normalizedQuery)
     );
+}
 
-    pokemonElement.innerHTML = "";
+function renderSearchMatches(matches) {
+    const pokemonElement = document.getElementById("pokemons");
+    let htmlContent = "";
+    matches.forEach(pokemon => {
+        htmlContent += pokemonCardTemplate(pokemon.id);
+    });
+    pokemonElement.innerHTML = htmlContent;
+}
+
+function getSearchResult(query) {
+    const matches = getMatchingPokemon(query);
 
     if (matches.length === 0) {
-        pokemonElement.innerHTML = `<p data-id="not-found">No Pokémon found for "${query}"</p>`;
+        document.getElementById("pokemons").innerHTML = getNotFoundHtml(query);
         return;
     }
 
-    matches.forEach(pokemon => {
-        pokemonElement.innerHTML += pokemonCardTemplate(pokemon.id);
-    });
+    renderSearchMatches(matches);
+}
+
+function clearSearch() {
+    const searchInput = document.getElementById("searchInput");
+    const searchButton = document.getElementById("searchButton");
+    const searchHint = document.getElementById("searchHint");
+
+    searchInput.value = "";
+    updateSearchHint(searchHint, 0);
+    disableSearchButton(searchButton);
+    resetSearch();
 }
 
 function showFavorites() {
@@ -204,6 +232,7 @@ function setLoadingState(isLoading) {
     } else {
         button.classList.remove("isLoading");
         button.disabled = false;
+        button.textContent = "LOAD MORE";
     }
 }
 

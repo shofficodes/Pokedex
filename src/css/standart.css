@@ -4,7 +4,11 @@
 }
 
 body {
-    color: black;
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--bg);
+    color: var(--ink);
     font-family: "Archivo";
     min-height: 100dvh;
 }

@@ -100,3 +100,14 @@ function pokemonDialogTemplate(pokemon) {
         </div>
     `;
 }
+
+function getNotFoundHtml(query) {
+    return `
+        <div class="notFoundBox" data-id="not-found">
+            <p class="notFoundLabel">0 RESULTS</p>
+            <h2 class="notFoundHeading">NO MATCH FOUND.</h2>
+            <p class="notFoundText">Nothing in the loaded batch matches your search. Try a shorter term — the search runs on names only.</p>
+            <button type="button" class="notFoundClearButton" onclick="clearSearch()">CLEAR SEARCH</button>
+        </div>
+    `;
+}

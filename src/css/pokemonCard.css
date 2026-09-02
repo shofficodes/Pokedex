@@ -180,3 +180,71 @@
     border: none;
     background-color: var(--accent);
 }
+
+/* ===================================================
+   "NO MATCH FOUND" — erscheint anstelle der Karten,
+   wenn die Live-Suche keine Treffer liefert. Nutzt
+   grid-column:1/-1, um über alle Grid-Spalten hinweg
+   zu spannen — dadurch automatisch responsive, ohne
+   dass eigene Breakpoints für die Breite nötig sind.
+   =================================================== */
+
+.notFoundBox {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    border: 2px dashed var(--border);
+    padding: 32px;
+    gap: 12px;
+}
+
+.notFoundLabel {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: var(--accent-ink);
+}
+
+.notFoundHeading {
+    font-family: ArchivoBlack;
+    font-size: 28px;
+    color: var(--ink);
+}
+
+.notFoundText {
+    font-size: 14px;
+    color: var(--ink-2);
+    max-width: 480px;
+}
+
+.notFoundClearButton {
+    margin-top: 8px;
+    padding: 10px 20px;
+
+    border: 2px solid var(--border);
+    background-color: transparent;
+    color: var(--ink);
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.notFoundClearButton:hover {
+    background-color: var(--surface-2);
+}
+
+@media (max-width: 499px) {
+    .notFoundBox {
+        padding: 20px;
+    }
+
+    .notFoundHeading {
+        font-size: 22px;
+    }
+
+    .notFoundText {
+        max-width: 100%;
+    }
+}
