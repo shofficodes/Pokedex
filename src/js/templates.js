@@ -1,11 +1,14 @@
 function pokemonCardTemplate(pokeIndex) {
+    const isFavorite = favorites.includes(pokeIndex);
+    const favIconClass = isFavorite ? "cardFavIcon cardFavIconActive" : "cardFavIcon";
+
     return `
         <div class="pokemonCardWrapper">
                 <section class="pokemonCard" data-id="card" data-type="${pokemonCache[pokeIndex].types[0]}">
                     <header class="pokemonCardHeader">
                         <p>${formatPokemonId(pokemonCache[pokeIndex].id)}</p>
-                        <button class="cardFavButton" data-id="favButton" aria-label="Add to favorite" onclick="toggleFavIcon(this)">
-                            <div class="cardFavIcon" aria-hidden="true"></div>
+                        <button class="cardFavButton" data-id="favButton" aria-label="Add to favorite" onclick="toggleFavIcon(this); toggleFavorites(${pokeIndex})">
+                            <div class="${favIconClass}" aria-hidden="true"></div>
                         </button>
                     </header>
 

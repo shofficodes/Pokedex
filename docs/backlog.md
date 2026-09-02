@@ -1,8 +1,3 @@
-- loadPage effekt! 
-
-- ebenso die favorite Liste erstellen und anlegen! 
-- local storage datei hinzufügen und dateien auslesen vor api calls! (auch dark/light speichern)
-
 - suchleiste mit enter suchen lassen! 
 
 - dann die Pokemon Karten Detail ansicht erstellen!

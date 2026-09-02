@@ -3,14 +3,15 @@ let renderAmount = null;
 async function init() {
     const isInitialLoad = !renderAmount;
 
-    if (isInitialLoad){
+    if (isInitialLoad) {
         renderAmount = 24;
+        loadDataFromLocalStorage();
         showPokeballLoader(true);
+        consoleLog(true);
     }
-
-    await getDataFromApi(renderAmount);
-
-    console.log(pokemonCache);
+    if (Object.keys(pokemonCache).length < renderAmount) {
+        await getDataFromApi(renderAmount);
+    }
 
     renderPokemons(renderAmount);
     await getPokemonAmount();
@@ -21,25 +22,32 @@ async function init() {
     if (isInitialLoad) {
         showPokeballLoader(false);
     }
+    saveDataToLocalStorage();
 }
 
-function renderPokemons(amount){
+function consoleLog(log) {
+    if (log) {
+        console.log("type 'testPokeballLoader()' to test the Pokeball Loader animation");
+    }
+}
+
+function renderPokemons(amount) {
     let pokemonElement = document.getElementById("pokemons");
     pokemonElement.innerHTML = "";
 
-    for(let i = 0; i < amount; i++){
+    for (let i = 0; i < amount; i++) {
         pokemonElement.innerHTML += pokemonCardTemplate(i + 1);
     }
 }
 
-function renderLoadedAmount(){
+function renderLoadedAmount() {
     let loadedAmountTag = document.getElementById("loadedAmountInfo");
     loadedAmountTag.innerHTML = "";
 
-    loadedAmountTag.innerHTML = `${renderAmount} OF ${pokemonAmount} · NEXT BATCH 24`;    
+    loadedAmountTag.innerHTML = `${renderAmount} OF ${pokemonAmount} · NEXT BATCH 24`;
 }
 
-function loadMorePokemon(){
+function loadMorePokemon() {
     renderAmount += 24;
     setLoadingState(true);
     init();
@@ -94,7 +102,7 @@ function updateSearchHint(hintElement, length) {
     }
 }
 
-function showFavorites(){
+function showFavorites() {
     const favButton = document.getElementById("favButton");
 
     favButton.classList.toggle("favButtonEnabled");
@@ -131,4 +139,18 @@ function showPokeballLoader(isVisible) {
         loader.classList.remove("visible");
         pokemonSection.classList.remove("hidden");
     }
+}
+
+let favorites = [];
+
+function toggleFavorites(pokeIndex) {
+    const index = favorites.indexOf(pokeIndex);
+
+    if (index !== -1) {
+        favorites.splice(index, 1);
+    } else {
+        favorites.push(pokeIndex);
+    }
+
+    saveDataToLocalStorage();
 }
