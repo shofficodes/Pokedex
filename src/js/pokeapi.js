@@ -17,6 +17,11 @@ async function getPokemon(id) {
         return pokemonCache[id];
     }
     let response = await fetch(`${BASE_URL}pokemon/${id}`);
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch pokemon ${id}: ${response.status}`);
+    }
+
     let data = await response.json();
 
     pokemonCache[id] = pokemonModel(data);
@@ -50,6 +55,11 @@ async function getPokemonAmount() {
         return pokemonAmount;
     }
     let response = await fetch(`${BASE_URL}pokemon`);
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch pokemon amount: ${response.status}`);
+    }
+
     let data = await response.json();
 
     pokemonAmount = data.count;
@@ -58,15 +68,25 @@ async function getPokemonAmount() {
 
 async function getEvolutionData(pokemonSpeciesUrl, pokemonId) {
     let response = await fetch(pokemonSpeciesUrl);
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch species data for ${pokemonId}: ${response.status}`);
+    }
+
     let data = await response.json();
 
     pokemonCache[pokemonId].evolution_chain_url = data.evolution_chain.url;
-    
+
     let evolutionResponse = await fetch(data.evolution_chain.url);
+
+    if (!evolutionResponse.ok) {
+        throw new Error(`Failed to fetch evolution chain for ${pokemonId}: ${evolutionResponse.status}`);
+    }
+
     let evolutionData = await evolutionResponse.json();
 
     let chain = getEvolutionChain(evolutionData);
-    
+
     pokemonCache[pokemonId].evolution_chain = chain;
 }
 

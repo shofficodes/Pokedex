@@ -111,3 +111,19 @@ function getNotFoundHtml(query) {
         </div>
     `;
 }
+
+function getApiErrorHtml(dismissible = false) {
+    const closeButton = dismissible
+        ? `<button type="button" class="apiErrorCloseButton" aria-label="Dismiss error" onclick="dismissApiError(this)">✕</button>`
+        : "";
+
+    return `
+        <div class="apiErrorBox" data-id="api-error">
+            ${closeButton}
+            <p class="apiErrorLabel">ERROR 503</p>
+            <h2 class="apiErrorHeading">COULD NOT REACH THE API.</h2>
+            <p class="apiErrorText">The request to pokeapi.co failed. Cached entries stay available — press retry to fetch the missing ones.</p>
+            <button type="button" class="apiErrorRetryButton" onclick="retryFailedLoad()">RETRY</button>
+        </div>
+    `;
+}

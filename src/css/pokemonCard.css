@@ -181,14 +181,6 @@
     background-color: var(--accent);
 }
 
-/* ===================================================
-   "NO MATCH FOUND" — erscheint anstelle der Karten,
-   wenn die Live-Suche keine Treffer liefert. Nutzt
-   grid-column:1/-1, um über alle Grid-Spalten hinweg
-   zu spannen — dadurch automatisch responsive, ohne
-   dass eigene Breakpoints für die Breite nötig sind.
-   =================================================== */
-
 .notFoundBox {
     grid-column: 1 / -1;
     display: flex;
@@ -245,6 +237,89 @@
     }
 
     .notFoundText {
+        max-width: 100%;
+    }
+}
+
+.apiErrorBox {
+    position: relative;
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    background-color: var(--panel);
+    border: 3px solid var(--danger);
+    padding: 32px;
+    gap: 12px;
+
+    margin-top: 8px;
+}
+
+.apiErrorCloseButton {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    width: 28px;
+    height: 28px;
+
+    border: 2px solid var(--danger);
+    background-color: transparent;
+    color: var(--danger);
+    cursor: pointer;
+}
+
+.apiErrorCloseButton:hover {
+    background-color: var(--danger);
+    color: #FFFFFF;
+}
+
+.apiErrorLabel {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: var(--danger);
+}
+
+.apiErrorHeading {
+    font-family: ArchivoBlack;
+    font-size: 28px;
+    color: var(--ink);
+}
+
+.apiErrorText {
+    font-size: 14px;
+    color: var(--ink-2);
+    max-width: 480px;
+}
+
+.apiErrorRetryButton {
+    margin-top: 8px;
+    padding: 10px 24px;
+
+    border: none;
+    background-color: var(--accent);
+    color: black;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.apiErrorRetryButton:hover {
+    background-color: #FFD91A;
+}
+
+@media (max-width: 499px) {
+    .apiErrorBox {
+        padding: 20px;
+    }
+
+    .apiErrorHeading {
+        font-size: 22px;
+    }
+
+    .apiErrorText {
         max-width: 100%;
     }
 }

@@ -10,8 +10,21 @@ async function init() {
         showPokeballLoader(true);
         consoleLog(true);
     }
-    if (Object.keys(pokemonCache).length < renderAmount) {
-        await getDataFromApi(renderAmount);
+
+    const cachedCountBefore = Object.keys(pokemonCache).length;
+
+    try {
+        if (cachedCountBefore < renderAmount) {
+            await getDataFromApi(renderAmount);
+        }
+    } catch (error) {
+        console.warn("API-Request fehlgeschlagen:", error);
+        handleApiError(Object.keys(pokemonCache).length);
+        setLoadingState(false);
+        if (isInitialLoad) {
+            showPokeballLoader(false);
+        }
+        return;
     }
 
     renderPokemons(renderAmount);
@@ -20,11 +33,36 @@ async function init() {
     renderLoadedAmount();
     renderFavoriteCount();
     setLoadingState(false);
+    setLoadMoreVisible(true);
 
     if (isInitialLoad) {
         showPokeballLoader(false);
     }
     saveDataToLocalStorage();
+}
+
+function handleApiError(cachedCountBefore) {
+    if (cachedCountBefore > 0) {
+        renderPokemons(cachedCountBefore);
+        appendApiErrorBox();
+    } else {
+        document.getElementById("pokemons").innerHTML = getApiErrorHtml();
+    }
+    setLoadMoreVisible(false);
+}
+
+function appendApiErrorBox() {
+    document.getElementById("pokemons").innerHTML += getApiErrorHtml(true);
+}
+
+function dismissApiError(button) {
+    button.closest(".apiErrorBox").remove();
+    renderAmount = document.querySelectorAll(".pokemonCardWrapper").length;
+    setLoadMoreVisible(true);
+}
+
+function retryFailedLoad() {
+    init();
 }
 
 function consoleLog(log) {
