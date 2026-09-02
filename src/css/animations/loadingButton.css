@@ -1,0 +1,31 @@
+.loadMoreButton.isLoading {
+    background-color: var(--panel);
+    border: 2px solid var(--border);
+    color: var(--ink-2);
+    cursor: not-allowed;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.loadMoreButton.isLoading::after {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background-color: var(--ink-2);
+    animation: pulseSquare 0.5s ease-in-out infinite;
+}
+
+@keyframes pulseSquare {
+    0%, 100% {
+        background-color: var(--ink-2);
+    }
+    50% {
+        background-color: var(--surface-2);
+    }
+}

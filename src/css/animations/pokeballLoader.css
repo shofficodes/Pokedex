@@ -1,0 +1,30 @@
+.pokeballLoader {
+    display: none; /* Standardzustand: unsichtbar */
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 64px 32px;
+}
+
+.pokeballLoader.visible {
+    display: flex;
+}
+
+.pokemons.hidden {
+    display: none;
+}
+
+.pokeballSpinner {
+    width: 160px;
+    height: 160px;
+    animation: spinPokeball 1s linear infinite;
+}
+
+@keyframes spinPokeball {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

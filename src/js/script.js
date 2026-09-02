@@ -1,8 +1,11 @@
 let renderAmount = null;
 
 async function init() {
-    if (!renderAmount){
+    const isInitialLoad = !renderAmount;
+
+    if (isInitialLoad){
         renderAmount = 24;
+        showPokeballLoader(true);
     }
 
     await getDataFromApi(renderAmount);
@@ -14,6 +17,10 @@ async function init() {
     initSearchInput();
     renderLoadedAmount();
     setLoadingState(false);
+
+    if (isInitialLoad) {
+        showPokeballLoader(false);
+    }
 }
 
 function renderPokemons(amount){
@@ -110,5 +117,18 @@ function setLoadingState(isLoading) {
     } else {
         button.classList.remove("isLoading");
         button.disabled = false;
+    }
+}
+
+function showPokeballLoader(isVisible) {
+    const loader = document.getElementById("pokeballLoader");
+    const pokemonSection = document.getElementById("pokemons");
+
+    if (isVisible) {
+        loader.classList.add("visible");
+        pokemonSection.classList.add("hidden");
+    } else {
+        loader.classList.remove("visible");
+        pokemonSection.classList.remove("hidden");
     }
 }

@@ -1,4 +1,3 @@
-- loadButton effekt! 
 - loadPage effekt! 
 
 - ebenso die favorite Liste erstellen und anlegen! 

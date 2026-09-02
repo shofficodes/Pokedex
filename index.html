@@ -14,12 +14,14 @@
     <link rel="stylesheet" href="./src/css/pokemonCard.css">
     <link rel="stylesheet" href="./src/css/pokemonColors.css">
     <link rel="stylesheet" href="./src/css/themeColors.css">
-    <link rel="stylesheet" href="./src/css/loadingButton.css">
+    <link rel="stylesheet" href="./src/css/animations/loadingButton.css">
+    <link rel="stylesheet" href="./src/css/animations/pokeballLoader.css">
 
     <script src="./src/js/pokeapi.js"></script>
     <script src="./src/js/templates.js"></script>
     <script src="./src/js/script.js"></script>
     <script src="./src/js/darkMode.js"></script>
+    <script src="./src/js/consoleTests.js"></script>
 </head>
 
 <body onload="init()">
@@ -33,7 +35,8 @@
                 <p>151 ENTRIES</p>
             </div>
         </div>
-        <button id="favButton" class="favButton" onclick="showFavorites()"><img src="./assets/icons/saved_icon.png" alt="favorite_icon"><span>0</span></button>
+        <button id="favButton" class="favButton" onclick="showFavorites()"><img src="./assets/icons/saved_icon.png"
+                alt="favorite_icon"><span>0</span></button>
         <button class="darkButton" onclick="toggleDarkMode()">LIGHT</button>
         <div class="inputContainer">
             <div class="searchContainer">
@@ -50,6 +53,10 @@
             <div class="loadedAmountWrapper">
                 <p>24</p><span>LOADED</span>
             </div>
+        </div>
+
+        <div id="pokeballLoader" class="pokeballLoader">
+            <img src="./assets/icons/pokeball.png" alt="" class="pokeballSpinner" aria-hidden="true">
         </div>
 
         <section class="pokemons" id="pokemons">
