@@ -9,4 +9,6 @@ function toggleDarkMode() {
         document.documentElement.setAttribute("data-theme", "dark");
         darkButton.textContent = "LIGHT";
     }
+
+    saveDataToLocalStorage();
 }

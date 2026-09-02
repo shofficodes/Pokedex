@@ -3,7 +3,8 @@ const localStorageKey = "pokemonData";
 function saveDataToLocalStorage() {
     const pokemonData = {
         pokemonCache: pokemonCache,
-        favorites: favorites
+        favorites: favorites,
+        theme: document.documentElement.getAttribute("data-theme")
     };
 
     try {
@@ -30,6 +31,7 @@ function loadDataFromLocalStorage() {
 
     fillPokemonCache(pokemonData.pokemonCache);
     fillFavorites(pokemonData.favorites);
+    applyTheme(pokemonData.theme);
 
     return true;
 }
@@ -51,6 +53,18 @@ function fillFavorites(loadedFavorites) {
 
     favorites.length = 0;
     favorites.push(...loadedFavorites);
+}
+
+function applyTheme(theme) {
+    const darkButton = document.querySelector(".darkButton");
+
+    if (theme === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+        if (darkButton) darkButton.textContent = "LIGHT";
+    } else {
+        document.documentElement.removeAttribute("data-theme");
+        if (darkButton) darkButton.textContent = "DARK";
+    }
 }
 
 function clearLocalStorage() {
