@@ -1,12 +1,13 @@
 .pokemons {
     display: grid;
     grid-template-columns: auto;
+    justify-content: space-around;
 
     padding: 32px;
     gap: 8px;
 }
 
-@media (min-width: 375px) {
+@media (min-width: 500px) {
     .pokemons {
         grid-template-columns: auto auto;
     }
@@ -27,6 +28,7 @@
 @media (min-width: 1440px) {
     .pokemons {
         grid-template-columns: auto auto auto auto auto auto;
+        justify-content: space-between;
     }
 }
 
@@ -70,15 +72,10 @@
     align-items: center;
     justify-content: center;
 
-    width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
     border: none;
     background-color: transparent;
-}
-
-.cardFavButton>img {
-    width: 16px;
-    height: 16px;
 }
 
 .pokemonCardHeader {
@@ -161,7 +158,6 @@
 }
 
 .pokemonCard>p {
-    /* Ab 1000 zu groß, dann muss die Schriftgröße reduziert werden! Bzw. anderes Stiling erstellen und je nach Zahl zuweisen! */
     position: absolute;
     bottom: -20px;
     right: -8px;
@@ -169,17 +165,6 @@
     font-size: 72px;
 
     color: rgba(0, 0, 0, 0.17);
-}
-
-.cardFavButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 24px;
-    height: 24px;
-    border: none;
-    background-color: transparent;
 }
 
 .cardFavIcon {
