@@ -1,5 +1,5 @@
 .pokeballLoader {
-    display: none; /* Standardzustand: unsichtbar */
+    display: none;
     flex: 1;
     align-items: center;
     justify-content: center;

@@ -3,7 +3,7 @@ main {
     border-top: none;
     border-bottom: none;
 
-    background-color: var(--app-bg)
+    background-color: var(--app-bg);
 }
 
 .mainInfo {

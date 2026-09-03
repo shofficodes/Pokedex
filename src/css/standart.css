@@ -24,7 +24,7 @@ main {
 }
 
 @media screen and (min-width: 1440px) {
-    #pokemons, .mainInfo, .header {
+    .pokemons, .mainInfo, .header {
         padding-left: max(calc(50% - 720px), 0px);
         padding-right: max(calc(50% - 720px), 0px);
     }

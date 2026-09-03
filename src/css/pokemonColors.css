@@ -111,91 +111,109 @@
 .pokemonCard[data-type="normal"] {
     background-color: var(--type-normal);
     color: var(--type-normal-font);
+    --frame: var(--frame-normal);
 }
 
 .pokemonCard[data-type="fire"] {
     background-color: var(--type-fire);
     color: var(--type-fire-font);
+    --frame: var(--frame-fire);
 }
 
 .pokemonCard[data-type="water"] {
     background-color: var(--type-water);
     color: var(--type-water-font);
+    --frame: var(--frame-water);
 }
 
 .pokemonCard[data-type="electric"] {
     background-color: var(--type-electric);
     color: var(--type-electric-font);
+    --frame: var(--frame-electric);
 }
 
 .pokemonCard[data-type="grass"] {
     background-color: var(--type-grass);
     color: var(--type-grass-font);
+    --frame: var(--frame-grass);
 }
 
 .pokemonCard[data-type="ice"] {
     background-color: var(--type-ice);
     color: var(--type-ice-font);
+    --frame: var(--frame-ice);
 }
 
 .pokemonCard[data-type="fighting"] {
     background-color: var(--type-fighting);
     color: var(--type-fighting-font);
+    --frame: var(--frame-fighting);
 }
 
 .pokemonCard[data-type="poison"] {
     background-color: var(--type-poison);
     color: var(--type-poison-font);
+    --frame: var(--frame-poison);
 }
 
 .pokemonCard[data-type="ground"] {
     background-color: var(--type-ground);
     color: var(--type-ground-font);
+    --frame: var(--frame-ground);
 }
 
 .pokemonCard[data-type="flying"] {
     background-color: var(--type-flying);
     color: var(--type-flying-font);
+    --frame: var(--frame-flying);
 }
 
 .pokemonCard[data-type="psychic"] {
     background-color: var(--type-psychic);
     color: var(--type-psychic-font);
+    --frame: var(--frame-psychic);
 }
 
 .pokemonCard[data-type="bug"] {
     background-color: var(--type-bug);
     color: var(--type-bug-font);
+    --frame: var(--frame-bug);
 }
 
 .pokemonCard[data-type="rock"] {
     background-color: var(--type-rock);
     color: var(--type-rock-font);
+    --frame: var(--frame-rock);
 }
 
 .pokemonCard[data-type="ghost"] {
     background-color: var(--type-ghost);
     color: var(--type-ghost-font);
+    --frame: var(--frame-ghost);
 }
 
 .pokemonCard[data-type="dragon"] {
     background-color: var(--type-dragon);
     color: var(--type-dragon-font);
+    --frame: var(--frame-dragon);
 }
 
 .pokemonCard[data-type="dark"] {
     background-color: var(--type-dark);
     color: var(--type-dark-font);
+    --frame: var(--frame-dark);
 }
 
 .pokemonCard[data-type="steel"] {
     background-color: var(--type-steel);
     color: var(--type-steel-font);
+    --frame: var(--frame-steel);
 }
 
 .pokemonCard[data-type="fairy"] {
     background-color: var(--type-fairy);
     color: var(--type-fairy-font);
+    --frame: var(--frame-fairy);
 }
 
 .typeWrapper>span {
@@ -310,76 +328,4 @@
     background-color: var(--type-fairy);
     border-color: var(--chip-line-fairy);
     color: var(--type-fairy-font);
-}
-
-.pokemonCard[data-type="normal"] {
-    --frame: var(--frame-normal);
-}
-
-.pokemonCard[data-type="fire"] {
-    --frame: var(--frame-fire);
-}
-
-.pokemonCard[data-type="water"] {
-    --frame: var(--frame-water);
-}
-
-.pokemonCard[data-type="electric"] {
-    --frame: var(--frame-electric);
-}
-
-.pokemonCard[data-type="grass"] {
-    --frame: var(--frame-grass);
-}
-
-.pokemonCard[data-type="ice"] {
-    --frame: var(--frame-ice);
-}
-
-.pokemonCard[data-type="fighting"] {
-    --frame: var(--frame-fighting);
-}
-
-.pokemonCard[data-type="poison"] {
-    --frame: var(--frame-poison);
-}
-
-.pokemonCard[data-type="ground"] {
-    --frame: var(--frame-ground);
-}
-
-.pokemonCard[data-type="flying"] {
-    --frame: var(--frame-flying);
-}
-
-.pokemonCard[data-type="psychic"] {
-    --frame: var(--frame-psychic);
-}
-
-.pokemonCard[data-type="bug"] {
-    --frame: var(--frame-bug);
-}
-
-.pokemonCard[data-type="rock"] {
-    --frame: var(--frame-rock);
-}
-
-.pokemonCard[data-type="ghost"] {
-    --frame: var(--frame-ghost);
-}
-
-.pokemonCard[data-type="dragon"] {
-    --frame: var(--frame-dragon);
-}
-
-.pokemonCard[data-type="dark"] {
-    --frame: var(--frame-dark);
-}
-
-.pokemonCard[data-type="steel"] {
-    --frame: var(--frame-steel);
-}
-
-.pokemonCard[data-type="fairy"] {
-    --frame: var(--frame-fairy);
 }

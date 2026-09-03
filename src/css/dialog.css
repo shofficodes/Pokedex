@@ -25,12 +25,6 @@ body.dialogOpen {
     max-height: 85vh;
 }
 
-@media (min-width: 820px) {
-    .dialogContent {
-        flex-direction: row;
-    }
-}
-
 .dialogImagePanel {
     position: relative;
     overflow: hidden;
@@ -38,12 +32,6 @@ body.dialogOpen {
     width: 100%;
     min-height: 280px;
     flex-shrink: 0;
-}
-
-@media (min-width: 820px) {
-    .dialogImagePanel {
-        width: 45%;
-    }
 }
 
 .dialogSplit {
@@ -559,12 +547,43 @@ body.dialogOpen {
 }
 
 @media (min-width: 820px) {
+    .dialogContent {
+        flex-direction: row;
+    }
+
+    .dialogImagePanel {
+        width: 45%;
+    }
+
     .dialogTabs {
         display: none;
     }
 
     .dialogSection {
         display: block;
+    }
+}
+
+@media (max-width: 399px) {
+    .dialogEvolutionWrapper {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .evolutionStage {
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+    }
+
+    .evolutionStage>img {
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+
+    .evolutionStage>p {
+        text-align: left;
     }
 }
 
@@ -589,28 +608,5 @@ body.dialogOpen {
         height: 26px;
         top: 12px;
         right: 12px;
-    }
-}
-
-@media (max-width: 399px) {
-    .dialogEvolutionWrapper {
-        flex-direction: column;
-        gap: 8px;
-    }
-
-    .evolutionStage {
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 12px;
-    }
-
-    .evolutionStage>img {
-        margin-bottom: 0;
-        flex-shrink: 0;
-    }
-
-    .evolutionStage>p {
-        text-align: left;
     }
 }
