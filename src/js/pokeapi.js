@@ -3,114 +3,107 @@ const BASE_URL = "https://pokeapi.co/api/v2/";
 const pokemonCache = {};
 let pokemonAmount = 0;
 
-async function getDataFromApi(pokemonAmount){
-    for (let i = 0; i < pokemonAmount; i++) {
-        await getPokemon(i + 1);
-    }
-    for (let i = 0; i < Object.keys(pokemonCache).length; i++) {
-        await getEvolutionData(pokemonCache[i + 1].pokemon_species_url, pokemonCache[i + 1].id);
-    }
+async function fetchJson(url) {
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(`Request failed: ${url} (${response.status})`);
+  }
+
+  return response.json();
+}
+
+async function getDataFromApi(pokemonAmount) {
+  for (let i = 0; i < pokemonAmount; i++) {
+    await getPokemon(i + 1);
+  }
+  for (let i = 0; i < Object.keys(pokemonCache).length; i++) {
+    await getEvolutionData(pokemonCache[i + 1].pokemon_species_url, pokemonCache[i + 1].id);
+  }
 }
 
 async function getPokemon(id) {
-    if (pokemonCache[id]) {
-        return pokemonCache[id];
-    }
-    let response = await fetch(`${BASE_URL}pokemon/${id}`);
-
-    if (!response.ok) {
-        throw new Error(`Failed to fetch pokemon ${id}: ${response.status}`);
-    }
-
-    let data = await response.json();
-
-    pokemonCache[id] = pokemonModel(data);
+  if (pokemonCache[id]) {
     return pokemonCache[id];
+  }
+
+  const data = await fetchJson(`${BASE_URL}pokemon/${id}`);
+  pokemonCache[id] = pokemonModel(data);
+  return pokemonCache[id];
 }
 
-function pokemonModel(data){
-    return {
-        id: data.id,
-        name: data.name,
-        types: data.types.map(t => t.type.name),
-        image: data.sprites.other["official-artwork"].front_default,
-        species: data.species.name,
-        height: data.height,
-        weight: data.weight,
-        abilities: data.abilities.map(a => a.ability.name),
-        hp: data.stats[0].base_stat,
-        attack: data.stats[1].base_stat,
-        defense: data.stats[2].base_stat,
-        sp_attack: data.stats[3].base_stat,
-        sp_defense: data.stats[4].base_stat,
-        speed: data.stats[5].base_stat,
-        pokemon_species_url: data.species.url,
-        evolution_chain_url: "",
-        evolution_chain: []
-    };
+function getPokemonIdentity(data) {
+  return {
+    id: data.id,
+    name: data.name,
+    types: data.types.map(t => t.type.name),
+    image: data.sprites.other["official-artwork"].front_default,
+    species: data.species.name,
+    height: data.height,
+    weight: data.weight,
+    abilities: data.abilities.map(a => a.ability.name)
+  };
+}
+
+function getBaseStats(data) {
+  const [hp, attack, defense, spAttack, spDefense, speed] = data.stats.map(stat => stat.base_stat);
+  return { hp, attack, defense, sp_attack: spAttack, sp_defense: spDefense, speed };
+}
+
+function pokemonModel(data) {
+  return {
+    ...getPokemonIdentity(data),
+    ...getBaseStats(data),
+    pokemon_species_url: data.species.url,
+    evolution_chain_url: "",
+    evolution_chain: []
+  };
 }
 
 async function getPokemonAmount() {
-    if (pokemonAmount) {
-        return pokemonAmount;
-    }
-    let response = await fetch(`${BASE_URL}pokemon`);
-
-    if (!response.ok) {
-        throw new Error(`Failed to fetch pokemon amount: ${response.status}`);
-    }
-
-    let data = await response.json();
-
-    pokemonAmount = data.count;
+  if (pokemonAmount) {
     return pokemonAmount;
+  }
+
+  const data = await fetchJson(`${BASE_URL}pokemon`);
+  pokemonAmount = data.count;
+  return pokemonAmount;
 }
 
 async function getEvolutionData(pokemonSpeciesUrl, pokemonId) {
-    let response = await fetch(pokemonSpeciesUrl);
+  const speciesData = await fetchJson(pokemonSpeciesUrl);
+  pokemonCache[pokemonId].evolution_chain_url = speciesData.evolution_chain.url;
 
-    if (!response.ok) {
-        throw new Error(`Failed to fetch species data for ${pokemonId}: ${response.status}`);
-    }
-
-    let data = await response.json();
-
-    pokemonCache[pokemonId].evolution_chain_url = data.evolution_chain.url;
-
-    let evolutionResponse = await fetch(data.evolution_chain.url);
-
-    if (!evolutionResponse.ok) {
-        throw new Error(`Failed to fetch evolution chain for ${pokemonId}: ${evolutionResponse.status}`);
-    }
-
-    let evolutionData = await evolutionResponse.json();
-
-    let chain = getEvolutionChain(evolutionData);
-
-    pokemonCache[pokemonId].evolution_chain = chain;
+  const evolutionData = await fetchJson(speciesData.evolution_chain.url);
+  pokemonCache[pokemonId].evolution_chain = getEvolutionChain(evolutionData);
 }
 
-function getEvolutionChain(evolutionData){
-    let stage1 = evolutionData.chain;
-    let chain = [
-        { id: extractIdFromUrl(stage1.species.url), name: stage1.species.name }
-    ];
+function getNextStage(chainLink) {
+  return chainLink.evolves_to[0] || null;
+}
 
-    let stage2 = stage1.evolves_to[0];
-    if (stage2) {
-        chain.push({ id: extractIdFromUrl(stage2.species.url), name: stage2.species.name });
+function buildStageEntry(chainLink) {
+  return { id: extractIdFromUrl(chainLink.species.url), name: chainLink.species.name };
+}
 
-        let stage3 = stage2.evolves_to[0];
-        if (stage3) {
-            chain.push({ id: extractIdFromUrl(stage3.species.url), name: stage3.species.name });
-        }
+function getEvolutionChain(evolutionData) {
+  const stage1 = evolutionData.chain;
+  const chain = [buildStageEntry(stage1)];
+
+  const stage2 = getNextStage(stage1);
+  if (stage2) {
+    chain.push(buildStageEntry(stage2));
+    const stage3 = getNextStage(stage2);
+    if (stage3) {
+      chain.push(buildStageEntry(stage3));
     }
-    return chain;
+  }
+  return chain;
 }
 
 function extractIdFromUrl(url) {
-    const parts = url.split("/").filter(Boolean);
-    const lastPart = parts[parts.length - 1];
+  const parts = url.split("/").filter(Boolean);
+  const lastPart = parts[parts.length - 1];
 
-    return Number(lastPart);
+  return Number(lastPart);
 }
