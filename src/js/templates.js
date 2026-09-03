@@ -2,7 +2,7 @@ function getCardHeaderHtml(pokeIndex, favIconClass) {
   return `
     <header class="pokemonCardHeader">
       <p>${formatPokemonId(pokemonCache[pokeIndex].id)}</p>
-      <button class="cardFavButton" data-id="favButton" aria-label="Add to favorite" onclick="event.stopPropagation(); toggleFavIcon(this); toggleFavorites(${pokeIndex})">
+      <button class="cardFavButton" data-id="fav-button" aria-label="Add to favorite" onclick="event.stopPropagation(); toggleFavIcon(this); toggleFavorites(${pokeIndex})">
         <div class="${favIconClass}" aria-hidden="true"></div>
       </button>
     </header>
@@ -15,7 +15,7 @@ function getCardContentHtml(pokeIndex) {
       <h2>${toUpperCaseString(pokemonCache[pokeIndex].name)}</h2>
       <div class="typeWrapper">${getTypeHTML(pokeIndex)}</div>
       <div class="cardImgWrapper">
-        <img data-id="cardImage" src="${pokemonCache[pokeIndex].image}" alt="${pokemonCache[pokeIndex].name}_Image">
+        <img data-id="card-image" src="${pokemonCache[pokeIndex].image}" alt="${pokemonCache[pokeIndex].name}_Image">
       </div>
     </div>
   `;
@@ -25,14 +25,14 @@ function pokemonCardTemplate(pokeIndex) {
   const isFavorite = favorites.includes(pokeIndex);
   const favIconClass = isFavorite ? "cardFavIcon cardFavIconActive" : "cardFavIcon";
   return `
-    <div class="pokemonCardWrapper">
-      <section class="pokemonCard" data-id="card" data-type="${pokemonCache[pokeIndex].types[0]}" onclick="openPokemonDialog(${pokeIndex})">
+    <li class="pokemonCardWrapper">
+      <section class="pokemonCard" data-id="card" role="button" tabindex="0" aria-label="Show details for ${pokemonCache[pokeIndex].name}" data-type="${pokemonCache[pokeIndex].types[0]}" onclick="openPokemonDialog(${pokeIndex})" onkeydown="handleCardKeydown(event, ${pokeIndex})">
         ${getCardHeaderHtml(pokeIndex, favIconClass)}
         ${getCardContentHtml(pokeIndex)}
         <p>#${pokemonCache[pokeIndex].id}</p>
       </section>
       <div class="pokemonCardShadow"></div>
-    </div>
+    </li>
   `;
 }
 
@@ -80,9 +80,9 @@ function getDialogHeaderHtml(pokemon) {
 function getDialogTabsHtml() {
   return `
     <div class="dialogTabs">
-      <button type="button" class="dialogTab dialogTabActive" data-tab="about" onclick="switchDialogTab('about', this)">ABOUT</button>
-      <button type="button" class="dialogTab" data-tab="stats" onclick="switchDialogTab('stats', this)">BASE STATS</button>
-      <button type="button" class="dialogTab" data-tab="evolution" onclick="switchDialogTab('evolution', this)">EVOLUTION</button>
+      <button type="button" class="dialogTab dialogTabActive" data-tab="about" aria-label="Show about section" onclick="switchDialogTab('about', this)">ABOUT</button>
+      <button type="button" class="dialogTab" data-tab="stats" aria-label="Show base stats" onclick="switchDialogTab('stats', this)">BASE STATS</button>
+      <button type="button" class="dialogTab" data-tab="evolution" aria-label="Show evolution chain" onclick="switchDialogTab('evolution', this)">EVOLUTION</button>
     </div>
   `;
 }
@@ -139,7 +139,7 @@ function getDialogNavHtml(pokemon) {
   return `
     <div class="dialogNav">
       <button data-id="prev-button" aria-label="Previous Pokémon" onclick="showPreviousPokemon()">←</button>
-      <p>${pokemon.id} / ${renderAmount}</p>
+      <p>${formatPokemonId(pokemon.id)} / ${pokemonAmount}</p>
       <button data-id="next-button" aria-label="Next Pokémon" onclick="showNextPokemon()">→</button>
     </div>
   `;
@@ -160,30 +160,33 @@ function pokemonDialogTemplate(pokemon) {
   `;
 }
 
-function getNotFoundHtml(query) {
+function getNotFoundHtml() {
   return `
-    <div class="notFoundBox" data-id="not-found">
+    <li class="notFoundBox" data-id="not-found">
       <p class="notFoundLabel">0 RESULTS</p>
       <h2 class="notFoundHeading">NO MATCH FOUND.</h2>
       <p class="notFoundText">Nothing in the loaded batch matches your search. Try a shorter term — the search runs on names only.</p>
-      <button type="button" class="notFoundClearButton" onclick="clearSearch()">CLEAR SEARCH</button>
-    </div>
+      <button type="button" class="notFoundClearButton" aria-label="Clear search and show all Pokémon" onclick="clearSearch()">CLEAR SEARCH</button>
+    </li>
   `;
 }
 
-function getApiErrorHtml(dismissible = false) {
-  const closeButton = dismissible
-    ? `<button type="button" class="apiErrorCloseButton" aria-label="Dismiss error" onclick="dismissApiError(this)">✕</button>`
-    : "";
+function getApiErrorCloseButtonHtml(dismissible) {
+  if (!dismissible) {
+    return "";
+  }
+  return `<button type="button" class="apiErrorCloseButton" aria-label="Dismiss error message" onclick="dismissApiError(this)">✕</button>`;
+}
 
+function getApiErrorHtml(dismissible = false) {
   return `
-    <div class="apiErrorBox" data-id="api-error">
-      ${closeButton}
+    <li class="apiErrorBox" data-id="api-error">
+      ${getApiErrorCloseButtonHtml(dismissible)}
       <p class="apiErrorLabel">ERROR 503</p>
       <h2 class="apiErrorHeading">COULD NOT REACH THE API.</h2>
       <p class="apiErrorText">The request to pokeapi.co failed. Cached entries stay available — press retry to fetch the missing ones.</p>
-      <button type="button" class="apiErrorRetryButton" onclick="retryFailedLoad()">RETRY</button>
-    </div>
+      <button type="button" class="apiErrorRetryButton" aria-label="Retry loading Pokémon" onclick="retryFailedLoad()">RETRY</button>
+    </li>
   `;
 }
 

@@ -39,22 +39,22 @@
             </div>
         </div>
         <button id="favButton" class="favButton" onclick="showFavorites()" aria-label="Show favorites"><img src="./assets/icons/saved_icon.png"
-                alt="favorite_icon"><span></span></button>
-        <button class="darkButton" onclick="toggleDarkMode()">LIGHT</button>
+                alt=""><span></span></button>
+        <button class="darkButton" onclick="toggleDarkMode()" aria-label="Toggle dark mode">LIGHT</button>
         <div class="inputContainer">
             <div class="searchContainer">
-                <input id="searchInput" type="search" placeholder="Search by name..." aria-label="Search Pokémon by name">
-                <button class="searchButton" id="searchButton">SEARCH</button>
+                <input id="searchInput" data-id="search-input" type="search" placeholder="Search by name..." aria-label="Search Pokémon by name">
+                <button class="searchButton" id="searchButton" data-id="search-button" aria-label="Search Pokémon">SEARCH</button>
             </div>
             <p id="searchHint">TYPE AT LEAST 3 CHARACTERS</p>
         </div>
     </header>
 
-    <main>
+    <main data-id="content">
         <div class="mainInfo">
             <p>ALL POKÉMON</p>
             <div class="loadedAmountWrapper">
-                <p>24</p><span>LOADED</span>
+                <p id="loadedAmountCount">24</p><span>LOADED</span>
             </div>
         </div>
 
@@ -62,13 +62,11 @@
             <img src="./assets/icons/pokeball.png" alt="" class="pokeballSpinner" aria-hidden="true">
         </div>
 
-        <section class="pokemons" id="pokemons">
-
-        </section>
+        <ul class="pokemons" id="pokemons"></ul>
         <div class="loadMoreWrapper">
             <div class="loadMoreInner">
                 <div class="loadMoreShadow"></div>
-                <button onclick="loadMorePokemon()" class="loadMoreButton" id="loadMoreButton">LOAD MORE</button>
+                <button onclick="loadMorePokemon()" class="loadMoreButton" id="loadMoreButton" data-id="load-more-button" aria-label="Load more Pokémon">LOAD MORE</button>
             </div>
         </div>
         <p class="loadedAmountInfo" id="loadedAmountInfo"></p>
@@ -82,7 +80,7 @@
         </div>
     </footer>
 
-    <dialog id="pokemonDialog" data-id="dialog" class="pokemonDialog"></dialog>
+    <dialog id="pokemonDialog" data-id="dialog" class="pokemonDialog" aria-label="Pokémon details"></dialog>
 </body>
 
 </html>

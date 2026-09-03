@@ -62,6 +62,7 @@ async function init() {
 }
 
 function handleApiError(cachedCountBefore) {
+  renderAmount = cachedCountBefore;
   if (cachedCountBefore > 0) {
     renderPokemons(cachedCountBefore);
     appendApiErrorBox();
@@ -95,9 +96,8 @@ function renderPokemons(amount) {
 }
 
 function renderLoadedAmount() {
-  let loadedAmountTag = document.getElementById("loadedAmountInfo");
-  loadedAmountTag.innerHTML = "";
-
+  document.getElementById("loadedAmountCount").textContent = renderAmount;
+  const loadedAmountTag = document.getElementById("loadedAmountInfo");
   loadedAmountTag.innerHTML = `${renderAmount} OF ${pokemonAmount} · NEXT BATCH ${BATCH_SIZE}`;
 }
 
@@ -145,7 +145,20 @@ function initSearchInput() {
 
   searchInput.addEventListener("input", () => handleSearchInputChange(searchInput, searchButton, searchHint));
   searchInput.addEventListener("keydown", (event) => handleSearchEnterKey(event, searchInput));
-  searchButton.addEventListener("click", () => searchInput.blur());
+  searchButton.addEventListener("click", () => handleSearchButtonClick(searchInput));
+}
+
+function handleSearchButtonClick(searchInput) {
+  searchInput.blur();
+  getSearchResult(searchInput.value);
+  setLoadMoreVisible(false);
+}
+
+function handleCardKeydown(event, pokeIndex) {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    openPokemonDialog(pokeIndex);
+  }
 }
 
 function resetSearch() {
@@ -207,7 +220,7 @@ function getSearchResult(query) {
   const matches = getMatchingPokemon(query);
 
   if (matches.length === 0) {
-    document.getElementById("pokemons").innerHTML = getNotFoundHtml(query);
+    document.getElementById("pokemons").innerHTML = getNotFoundHtml();
     setLoadMoreVisible(false);
     return;
   }
@@ -244,7 +257,7 @@ function renderFavoritePokemons() {
   const favoritedPokemon = favorites.filter(id => pokemonCache[id]);
 
   if (favoritedPokemon.length === 0) {
-    pokemonElement.innerHTML = `<p data-id="not-found">No favorites yet.</p>`;
+    pokemonElement.innerHTML = `<li class="notFoundBox" data-id="not-found">No favorites yet.</li>`;
     return;
   }
   let htmlContent = "";

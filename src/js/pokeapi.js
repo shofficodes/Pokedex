@@ -17,9 +17,6 @@ async function getDataFromApi(pokemonAmount) {
   for (let i = 0; i < pokemonAmount; i++) {
     await getPokemon(i + 1);
   }
-  for (let i = 0; i < Object.keys(pokemonCache).length; i++) {
-    await getEvolutionData(pokemonCache[i + 1].pokemon_species_url, pokemonCache[i + 1].id);
-  }
 }
 
 async function getPokemon(id) {
