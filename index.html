@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
-    <link rel="shortcut icon" href="./assets/icons/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/icons/favicon.png" type="image/png">
 
     <link rel="stylesheet" href="./src/css/standart.css">
     <link rel="stylesheet" href="./src/css/fonts.css">
@@ -29,7 +29,7 @@
 
 <body onload="init()">
     <header class="header">
-        <img src="./assets/icons/logo-dex.png" alt="Pokedex_Icon" class="logo">
+        <img src="./assets/icons/logo-dex.png" alt="" class="logo">
         <div>
             <h1>POKÉDEX</h1>
             <div class="headerInfo">
@@ -38,12 +38,12 @@
                 <p>151 ENTRIES</p>
             </div>
         </div>
-        <button id="favButton" class="favButton" onclick="showFavorites()"><img src="./assets/icons/saved_icon.png"
+        <button id="favButton" class="favButton" onclick="showFavorites()" aria-label="Show favorites"><img src="./assets/icons/saved_icon.png"
                 alt="favorite_icon"><span></span></button>
         <button class="darkButton" onclick="toggleDarkMode()">LIGHT</button>
         <div class="inputContainer">
             <div class="searchContainer">
-                <input id="searchInput" type="Search" placeholder="Search by name...">
+                <input id="searchInput" type="search" placeholder="Search by name..." aria-label="Search Pokémon by name">
                 <button class="searchButton" id="searchButton">SEARCH</button>
             </div>
             <p id="searchHint">TYPE AT LEAST 3 CHARACTERS</p>
