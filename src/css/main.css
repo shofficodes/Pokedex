@@ -19,6 +19,13 @@ main {
     font-size: 16px;
 }
 
+@media screen and (min-width: 1440px) {
+    .mainInfo {
+        padding-left: max(calc(50% - 720px), 0px);
+        padding-right: max(calc(50% - 720px), 0px);
+    }
+}
+
 .loadedAmountWrapper {
     display: flex;
     flex-direction: row;
