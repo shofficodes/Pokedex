@@ -13,8 +13,8 @@ async function fetchJson(url) {
   return response.json();
 }
 
-async function getDataFromApi(pokemonAmount) {
-  for (let i = 0; i < pokemonAmount; i++) {
+async function getDataFromApi(pokeAmount) {
+  for (let i = 0; i < pokeAmount; i++) {
     await getPokemon(i + 1);
   }
 }

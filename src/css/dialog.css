@@ -426,11 +426,6 @@ body.dialogOpen {
     gap: 12px;
 }
 
-.dialogEvolutionLoading {
-    font-size: 12px;
-    color: var(--ink-2);
-}
-
 .evolutionStage {
     display: flex;
     flex-direction: column;
@@ -469,6 +464,30 @@ body.dialogOpen {
     border-color: var(--accent);
     background-color: var(--surface-2);
     cursor: default;
+}
+
+.evolutionStageSkeleton {
+    border-style: dashed;
+    cursor: default;
+}
+
+.evolutionStageImgPlaceholder {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 8px;
+    background-color: var(--surface-2);
+}
+
+.evolutionStageTextPlaceholder {
+    width: 70%;
+    height: 8px;
+    margin-bottom: 4px;
+    background-color: var(--surface-2);
+}
+
+.evolutionStageTextPlaceholderSmall {
+    width: 45%;
+    margin-bottom: 0;
 }
 
 .dialogNav {
@@ -584,6 +603,15 @@ body.dialogOpen {
 
     .evolutionStage>p {
         text-align: left;
+    }
+
+    .evolutionStageImgPlaceholder {
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+
+    .evolutionStageTextPlaceholder {
+        width: 60%;
     }
 }
 

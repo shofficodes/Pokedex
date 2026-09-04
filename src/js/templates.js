@@ -204,6 +204,24 @@ function getStatBarHTML(label, value) {
   `;
 }
 
+function getEvolutionSkeletonStageHTML() {
+  return `
+    <div class="evolutionStage evolutionStageSkeleton" aria-hidden="true">
+      <div class="evolutionStageImgPlaceholder"></div>
+      <div class="evolutionStageTextPlaceholder"></div>
+      <div class="evolutionStageTextPlaceholder evolutionStageTextPlaceholderSmall"></div>
+    </div>
+  `;
+}
+
+function getEvolutionSkeletonHTML() {
+  let skeletonHtml = "";
+  for (let i = 0; i < 3; i++) {
+    skeletonHtml += getEvolutionSkeletonStageHTML();
+  }
+  return skeletonHtml;
+}
+
 function getEvolutionStageHTML(stage, pokemon) {
   const isCurrent = stage.id === pokemon.id;
   const stageClass = isCurrent ? "evolutionStage evolutionStageCurrent" : "evolutionStage";

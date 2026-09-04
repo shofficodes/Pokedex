@@ -1,3 +1,5 @@
+// in case of a real project, this would be in .gitignore, but for the sake of this test project, it's here
+
 const POKEBALL_TEST_DURATION_MS = 4000;
 
 function testPokeballLoader() {

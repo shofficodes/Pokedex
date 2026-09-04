@@ -96,6 +96,8 @@ function renderPokemons(amount) {
 }
 
 function renderLoadedAmount() {
+  document.getElementById("mainInfoLabel").textContent = "ALL POKÉMON";
+  document.getElementById("mainInfoUnit").textContent = "LOADED";
   document.getElementById("loadedAmountCount").textContent = renderAmount;
   const loadedAmountTag = document.getElementById("loadedAmountInfo");
   loadedAmountTag.innerHTML = `${renderAmount} OF ${pokemonAmount} · NEXT BATCH ${BATCH_SIZE}`;
@@ -164,6 +166,7 @@ function handleCardKeydown(event, pokeIndex) {
 function resetSearch() {
   setLoadMoreVisible(true);
   renderPokemons(renderAmount);
+  renderLoadedAmount();
 }
 
 function setLoadMoreVisible(isVisible) {
@@ -216,8 +219,15 @@ function renderSearchMatches(matches) {
   pokemonElement.innerHTML = htmlContent;
 }
 
+function updateSearchInfo(count) {
+  document.getElementById("mainInfoLabel").textContent = "SEARCH RESULTS";
+  document.getElementById("mainInfoUnit").textContent = "FOUND";
+  document.getElementById("loadedAmountCount").textContent = count;
+}
+
 function getSearchResult(query) {
   const matches = getMatchingPokemon(query);
+  updateSearchInfo(matches.length);
 
   if (matches.length === 0) {
     document.getElementById("pokemons").innerHTML = getNotFoundHtml();
@@ -249,12 +259,20 @@ function showFavorites() {
   } else {
     setLoadMoreVisible(true);
     renderPokemons(renderAmount);
+    renderLoadedAmount();
   }
+}
+
+function updateFavoritesInfo(count) {
+  document.getElementById("mainInfoLabel").textContent = "MY FAVORITES";
+  document.getElementById("mainInfoUnit").textContent = "FAVORITES";
+  document.getElementById("loadedAmountCount").textContent = count;
 }
 
 function renderFavoritePokemons() {
   const pokemonElement = document.getElementById("pokemons");
   const favoritedPokemon = favorites.filter(id => pokemonCache[id]);
+  updateFavoritesInfo(favoritedPokemon.length);
 
   if (favoritedPokemon.length === 0) {
     pokemonElement.innerHTML = `<li class="notFoundBox" data-id="not-found">No favorites yet.</li>`;

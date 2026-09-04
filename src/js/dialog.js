@@ -3,8 +3,10 @@ const MAX_STAT_REFERENCE = 200;
 let currentDialogIndex = null;
 let isNavigating = false;
 let closeListenerAttached = false;
+let isFavoritesNavigation = false;
 
 async function openPokemonDialog(pokeIndex) {
+  isFavoritesNavigation = document.getElementById("favButton").classList.contains("favButtonEnabled");
   await navigateToPokemon(pokeIndex);
 
   const dialog = document.getElementById("pokemonDialog");
@@ -25,6 +27,7 @@ function attachDialogCloseHandler(dialog) {
 }
 
 function handleDialogClose() {
+  isFavoritesNavigation = false;
   document.body.classList.remove("dialogOpen");
   const dialog = document.getElementById("pokemonDialog");
   dialog.removeEventListener("click", handleBackdropClick);
@@ -85,11 +88,41 @@ async function goToPokemon(pokeIndex) {
   }
 }
 
+function getSortedFavorites() {
+  return [...favorites].sort((a, b) => a - b);
+}
+
+function getNextFavoriteId(currentId) {
+  const sorted = getSortedFavorites();
+  const next = sorted.find(id => id > currentId);
+  return next === undefined ? null : next;
+}
+
+function getPreviousFavoriteId(currentId) {
+  const sorted = getSortedFavorites().reverse();
+  const previous = sorted.find(id => id < currentId);
+  return previous === undefined ? null : previous;
+}
+
 function showPreviousPokemon() {
+  if (isFavoritesNavigation) {
+    const previousId = getPreviousFavoriteId(currentDialogIndex);
+    if (previousId !== null) {
+      goToPokemon(previousId);
+    }
+    return;
+  }
   goToPokemon(currentDialogIndex - 1);
 }
 
 function showNextPokemon() {
+  if (isFavoritesNavigation) {
+    const nextId = getNextFavoriteId(currentDialogIndex);
+    if (nextId !== null) {
+      goToPokemon(nextId);
+    }
+    return;
+  }
   goToPokemon(currentDialogIndex + 1);
 }
 
@@ -123,7 +156,7 @@ function getStatSegmentsHtml(filledSegments, totalSegments) {
 
 function getEvolutionHTML(pokemon) {
   if (pokemon.evolution_chain.length === 0) {
-    return `<p class="dialogEvolutionLoading">Loading evolution chain...</p>`;
+    return getEvolutionSkeletonHTML();
   }
 
   let evolutionHtml = "";
